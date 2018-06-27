@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiConfigs
+ *
+ * @ORM\Table(name="glpi_configs", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"context", "name"})})
+ * @ORM\Entity
+ */
+class GlpiConfigs
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="context", type="string", length=150, nullable=true)
+     */
+    private $context;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=150, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="text", length=65535, nullable=true)
+     */
+    private $value;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

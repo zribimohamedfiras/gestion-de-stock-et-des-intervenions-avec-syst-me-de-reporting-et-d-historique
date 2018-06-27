@@ -1,0 +1,117 @@
+<head>
+    <meta charset="UTF-8" />
+    <title>pdf</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+</head>
+<body style="font-size: 14pt">
+
+<p >Unité ordonnancement et assistance</p><br>
+<center style="font-size: 20pt"><b>DEMANDE DE PRISE EN CHARGE DE SEJOUR</b> <br><b>DES CADRES A L’INTERIEUR DE LA TUNISIE</b></center>
+<br><br>
+
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-3" style="font-size: 15pt">Nom et Prenom:</div>
+    <div class="col-md-3 col-sm-3 col-xs-3 " ><b>{{ demandeur.getPrenom() }} {{ demandeur.getNom() }}</b></div>
+    <div class="col-md-3 col-sm-3 col-xs-3" style="font-size: 15pt">Matricule:</div>
+    <div class="col-md-3 col-sm-3 col-xs-3 " ><b>{{ demandeur.getMatricule() }}</b></div>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-3" style="font-size: 15pt">Fonction:</div>
+    <div class="col-md-3 col-sm-3 col-xs-3 " ><b>{{ demandeur.getFonctionFr() }}</b></div>
+    <div class="col-md-3 col-sm-3 col-xs-2" style="font-size: 15pt">Direction:</div>
+    <div class="col-md-3 col-sm-3 col-xs-1 " ><b>{{ demandeur.getDirection() }}</b></div>
+    <div class="col-md-3 col-sm-3 col-xs-1" style="font-size: 15pt">Unité:</div>
+    <div class="col-md-3 col-sm-3 col-xs-2 " ><b>{{ demandeur.getUnite() }}</b></div>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-5" style="font-size: 15pt">Lieu et objet du déplacement:</div>
+    <b>{{ objet }}</b>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-4" style="font-size: 15pt">Date d’entrée à l’hôtel</div>
+    <div class="col-md-3 col-sm-3 col-xs-4 " ><b>{{ dateentre }}</b></div>
+    <div class="col-md-3 col-sm-3 col-xs-3" style="font-size: 15pt">(matin ou après-midi)</div>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-4" style="font-size: 15pt">Date sortie de l’hôtel</div>
+    <div class="col-md-3 col-sm-3 col-xs-4 " ><b>{{ datesortie }}</b></div>
+    <div class="col-md-3 col-sm-3 col-xs-3" style="font-size: 15pt">(matin ou après-midi)</div>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-5" style="font-size: 15pt">Imputation des dépenses </div>
+    <div class="col-md-3 col-sm-3 col-xs-1" style="font-size: 15pt">OT</div>
+    <div class="col-md-3 col-sm-3 col-xs-1 " ><table class="table table-bordered"><tr><td><center><b>12</b></center></td></tr></table></div>
+    <div class="col-md-3 col-sm-3 col-xs-1" style="font-size: 15pt">UF</div>
+    <div class="col-md-3 col-sm-3 col-xs-1 " ><table class="table table-bordered"><tr><td><center><b>{{ demandeur.getUnite() }}</b></center></td></tr></table></div>
+    <div class="col-md-3 col-sm-3 col-xs-1" style="font-size: 15pt">projet</div>
+    <div class="col-md-3 col-sm-3 col-xs-1 " ><table class="table table-bordered"><tr><td><center><b>12</b></center></td></tr></table></div>
+
+
+
+</div>
+<br>
+<center  >PERSONNES ACCOMPAGNANTES</center>
+
+<table class="table table-bordered"  style="font-size: 15pt">
+    <thead>
+    <tr  >
+        <td><center>Nom et Prénom</center></td>
+        <td><center>Matricule</center></td>
+        <td><center>College</center></td>
+        <td><center>Fonction</center></td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for inter in intervenant %}
+    <tr >
+        <td><center>{{ inter.getIdutilisateur().getPrenom() }} {{ inter.getIdutilisateur().getNom() }}</center></td>
+        <td><center>{{ inter.getIdutilisateur().getMatricule() }}</center></td>
+        <td><center>-</center></td>
+        <td><center>{{ inter.getIdutilisateur().getFonctionFr() }}</center></td>
+    </tr>
+    {% endfor %}
+    {% for su in supp %}
+        {% for user in users %}
+            {% if su == user.getUsername() %}
+        <tr >
+            <td><center>{{ user.getPrenom() }} {{ user.getNom() }}</center></td>
+            <td><center>{{ user.getMatricule() }}</center></td>
+            <td><center>-</center></td>
+            <td><center>{{ user.getFonctionFr() }}</center></td>
+        </tr>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+<table class="table table-bordered" style="font-size: 15pt">
+    <thead>
+    <tr >
+        <td><center>Le Directeur ou</center><br><center>Le Chef de</center><br><center>La région</center></td>
+        <td><center>DAJ</center><br><center>Unité ordonnancement et</center><br><center>Assistance</center></td>
+        <td><center>Décision de la D.A.J</center><br><center>Dans les cas</center><br><center>particuliers</center></td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><br><br><br><br></td>
+        <td><br><br><br><br></td>
+        <td><br><br><br><br></td>
+
+    </tr>
+</body>
+</table>
+
+<p>: cet imprimé doit parvenir à l’unité ordonnancement et assistance</p>

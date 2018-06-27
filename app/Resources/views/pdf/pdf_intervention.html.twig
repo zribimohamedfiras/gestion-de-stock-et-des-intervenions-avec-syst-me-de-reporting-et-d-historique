@@ -1,0 +1,130 @@
+
+<head>
+    <meta charset="UTF-8" />
+    <title>pdf</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+</head>
+<body style="font-size: 15pt">
+<img align="Left" width="200" height="75" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Logo_Societe_tunisienne_electricite_gaz.svg/1280px-Logo_Societe_tunisienne_electricite_gaz.svg.png">
+<div align="Right"><p>{{ "now"|date("d/m/Y") }}</p></div>
+<div align="Right"><p>{{ "now"|date("H:i:s") }}</p></div>
+<br>
+<center><h3>Bon d'intervention sur Système SCADA</h3></center>
+<hr width="60%">
+<br>
+
+<div class="row">
+<div class="col-md-3 col-sm-3 col-xs-12">N° &nbsp;&nbsp;&nbsp;&nbsp;{{ intervention.getIdIntervention() }}|{{ "now"|date("d-m-Y") }}</div>
+<div class="col-md-9 col-sm-9 col-xs-12"><center> Valide du {{ intervention.getDateDebut() }}  {{ intervention.getHeureDebut() }} au {{ intervention.getDateFin() }} {{ intervention.getHeureFin() }}</center></div>
+</div>
+<br><br>
+<p>Autorise :</p>
+<table class="table " border="0" >
+
+
+    {% for s in intervenant %}
+        <tr>
+
+
+
+            <th>Mr :</th>
+            <td>{{ s.getIdutilisateur().getPrenom() }} {{ s.getIdutilisateur().getNom() }}</td>
+            <th>CIN :</th>
+            <td>{{ s.getIdutilisateur().getNcin() }}</td>
+            <th>Société :</th>
+            <td>{{ s.getIdutilisateur().getSociete() }}</td>
+
+        </tr>
+    {% endfor %}
+
+</table>
+<br><br>
+  <p>*à intervenir dans les stations :</p>
+
+<table class="table " border="0" >
+    <thead>
+    <tr>
+        <th>CSR :</th>
+        <th>N°</th>
+        <th>Nom :</th>
+        <th>Num Ticket:</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in range(1,nbr) %}
+    <tr>
+        <td>majdi i9oli blasset'ha</td>
+        <td>numero station</td>
+        <td>{{ station[i]  }}</td>
+        <td>{{ ticket[i]  }}</td>
+
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br><br>
+
+
+<table class="table table-bordered" border="2" style="font-size: 15pt">
+    <tr><th>Nature d'Intervention</th><td>{{ description }}<br><br><br></td></tr>
+</table>
+<br><br>
+
+<p>Diffuser à :</p>
+
+<table class="table " border="0" >
+    <tbody>
+    <!-- lenna bech na3emlou for 3al diffusion ki i9oli majd chnia el table elli feha diffusion !-->
+{% for d in diffusion %}
+    <tr>
+        <td>{{ d.getDiffusion().getName() }}</td>
+        <td> {{ d.getDiffusion().getFax() }} </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+<br><br>
+<table class="table " border="0" >
+    <tr><td><left>Tunis Le : {{ "now"|date("d-m-Y") }}</left></td><center></center><td><center>Tunis Le : {{ "now"|date("d-m-Y") }}</center> </td></tr>
+    <tr><td><left><b>Signature Intervenant(s)</b></left><br><br><br></td><br><br><br><td><center><b>Approbation</b></center></center><br><br><br></td></tr>
+</table>
+
+
+<div id="watermark">
+    <img width="800" height="300" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Logo_Societe_tunisienne_electricite_gaz.svg/1280px-Logo_Societe_tunisienne_electricite_gaz.svg.png">
+</div>
+<style type="text/css">
+    #watermark {
+        opacity: 0.5;
+        color: #d0d0d0;
+        font-size: 150pt;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        margin: 0;
+        z-index: 4;
+        left: 200px;
+        top: 400px;
+    }
+hr{
+
+    color:  #0f0f0f;
+    background-color: #0f0f0f;
+    height: 2px;
+
+}
+
+    table{
+        display:inline;
+        vertical-align:top;
+    }
+
+</style>
+
+</body>

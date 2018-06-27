@@ -1,0 +1,70 @@
+
+<head>
+    <meta charset="UTF-8" />
+    <title>pdf</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+</head>
+<body style="font-size: 15pt">
+
+<img align="Left" width="200" height="75" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Logo_Societe_tunisienne_electricite_gaz.svg/1280px-Logo_Societe_tunisienne_electricite_gaz.svg.png">
+<div align="Right"><p>{{ "now"|date("d/m/Y") }}</p></div>
+<div align="Right"><p>{{ "now"|date("H:i:s") }}</p></div>
+<br>
+<center><h2>Bon d'{{type}} N° {{ num }}</h2></center>
+
+<p>Département Mouvement Gaz</p>
+<p>Division Maintenance et Système d'information</p>
+<br><br>
+
+<table class="table table-bordered" style="font-size: 15pt">
+    <thead>
+    <tr>
+        <th>Désignation</th>
+        <th>Quantité {{type}}</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>{{ article.getDesignation() }}</td>
+            <td>{{ qantite }}</td>
+
+        </tr>
+
+
+    </tbody>
+</table>
+<br>
+<p>Commentaire :</p>
+
+<table class="table table-bordered" border="2" style="font-size: 15pt">
+    <tr><td><br><br><br><br><br><br></td></tr>
+</table>
+<br><br>
+<table class="table table-bordered" border="2" style="font-size: 15pt">
+    <tr><td><center>vise de magasin<br>{{nom_magasinier}}</center><br><br><br><br><br></td><td><center>demandeur <br>{{nom_demandeur}}</center><br><br><br><br></td><td><center>Controle de service demandeur<br> {{ nom_controle }}</center><br><br><br><br></td></tr>
+</table>
+
+
+<div id="watermark">
+    <img width="800" height="300" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Logo_Societe_tunisienne_electricite_gaz.svg/1280px-Logo_Societe_tunisienne_electricite_gaz.svg.png">
+</div>
+<style type="text/css">
+    #watermark {
+        opacity: 0.5;
+        color: #d0d0d0;
+        font-size: 150pt;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        margin: 0;
+        z-index: 4;
+        left: 200px;
+        top: 400px;
+    }
+</style>
+
+</body>

@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiTicketsUsers
+ *
+ * @ORM\Table(name="glpi_tickets_users", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"tickets_id", "type", "users_id", "alternative_email"})}, indexes={@ORM\Index(name="user", columns={"users_id", "type"})})
+ * @ORM\Entity
+ */
+class GlpiTicketsUsers
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickets_id", type="integer", nullable=false)
+     */
+    private $ticketsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_notification", type="boolean", nullable=false)
+     */
+    private $useNotification = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alternative_email", type="string", length=255, nullable=true)
+     */
+    private $alternativeEmail;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

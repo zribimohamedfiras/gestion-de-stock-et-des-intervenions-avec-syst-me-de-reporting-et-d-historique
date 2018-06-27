@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiAlerts
+ *
+ * @ORM\Table(name="glpi_alerts", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"itemtype", "items_id", "type"})}, indexes={@ORM\Index(name="type", columns={"type"}), @ORM\Index(name="date", columns={"date"})})
+ * @ORM\Entity
+ */
+class GlpiAlerts
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,271 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiComputers
+ *
+ * @ORM\Table(name="glpi_computers", indexes={@ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="is_template", columns={"is_template"}), @ORM\Index(name="autoupdatesystems_id", columns={"autoupdatesystems_id"}), @ORM\Index(name="domains_id", columns={"domains_id"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="manufacturers_id", columns={"manufacturers_id"}), @ORM\Index(name="groups_id", columns={"groups_id"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="locations_id", columns={"locations_id"}), @ORM\Index(name="computermodels_id", columns={"computermodels_id"}), @ORM\Index(name="networks_id", columns={"networks_id"}), @ORM\Index(name="operatingsystems_id", columns={"operatingsystems_id"}), @ORM\Index(name="operatingsystemservicepacks_id", columns={"operatingsystemservicepacks_id"}), @ORM\Index(name="operatingsystemversions_id", columns={"operatingsystemversions_id"}), @ORM\Index(name="operatingsystemarchitectures_id", columns={"operatingsystemarchitectures_id"}), @ORM\Index(name="states_id", columns={"states_id"}), @ORM\Index(name="users_id_tech", columns={"users_id_tech"}), @ORM\Index(name="computertypes_id", columns={"computertypes_id"}), @ORM\Index(name="is_deleted", columns={"is_deleted"}), @ORM\Index(name="groups_id_tech", columns={"groups_id_tech"}), @ORM\Index(name="is_dynamic", columns={"is_dynamic"}), @ORM\Index(name="serial", columns={"serial"}), @ORM\Index(name="otherserial", columns={"otherserial"}), @ORM\Index(name="uuid", columns={"uuid"}), @ORM\Index(name="date_creation", columns={"date_creation"}), @ORM\Index(name="is_recursive", columns={"is_recursive"})})
+ * @ORM\Entity
+ */
+class GlpiComputers
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serial", type="string", length=255, nullable=true)
+     */
+    private $serial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otherserial", type="string", length=255, nullable=true)
+     */
+    private $otherserial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact", type="string", length=255, nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact_num", type="string", length=255, nullable=true)
+     */
+    private $contactNum;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id_tech", type="integer", nullable=false)
+     */
+    private $usersIdTech = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groups_id_tech", type="integer", nullable=false)
+     */
+    private $groupsIdTech = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="operatingsystems_id", type="integer", nullable=false)
+     */
+    private $operatingsystemsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="operatingsystemversions_id", type="integer", nullable=false)
+     */
+    private $operatingsystemversionsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="operatingsystemservicepacks_id", type="integer", nullable=false)
+     */
+    private $operatingsystemservicepacksId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="operatingsystemarchitectures_id", type="integer", nullable=false)
+     */
+    private $operatingsystemarchitecturesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="os_license_number", type="string", length=255, nullable=true)
+     */
+    private $osLicenseNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="os_licenseid", type="string", length=255, nullable=true)
+     */
+    private $osLicenseid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="os_kernel_version", type="string", length=255, nullable=true)
+     */
+    private $osKernelVersion;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="autoupdatesystems_id", type="integer", nullable=false)
+     */
+    private $autoupdatesystemsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="locations_id", type="integer", nullable=false)
+     */
+    private $locationsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="domains_id", type="integer", nullable=false)
+     */
+    private $domainsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="networks_id", type="integer", nullable=false)
+     */
+    private $networksId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="computermodels_id", type="integer", nullable=false)
+     */
+    private $computermodelsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="computertypes_id", type="integer", nullable=false)
+     */
+    private $computertypesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_template", type="boolean", nullable=false)
+     */
+    private $isTemplate = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="template_name", type="string", length=255, nullable=true)
+     */
+    private $templateName;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="manufacturers_id", type="integer", nullable=false)
+     */
+    private $manufacturersId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    private $isDeleted = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_dynamic", type="boolean", nullable=false)
+     */
+    private $isDynamic = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groups_id", type="integer", nullable=false)
+     */
+    private $groupsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="states_id", type="integer", nullable=false)
+     */
+    private $statesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ticket_tco", type="decimal", precision=20, scale=4, nullable=true)
+     */
+    private $ticketTco = '0.0000';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uuid", type="string", length=255, nullable=true)
+     */
+    private $uuid;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

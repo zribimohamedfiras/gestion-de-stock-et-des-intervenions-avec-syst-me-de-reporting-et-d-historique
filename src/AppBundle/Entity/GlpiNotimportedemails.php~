@@ -1,0 +1,82 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNotimportedemails
+ *
+ * @ORM\Table(name="glpi_notimportedemails", indexes={@ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="mailcollectors_id", columns={"mailcollectors_id"})})
+ * @ORM\Entity
+ */
+class GlpiNotimportedemails
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="from", type="string", length=255, nullable=false)
+     */
+    private $from;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="to", type="string", length=255, nullable=false)
+     */
+    private $to;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mailcollectors_id", type="integer", nullable=false)
+     */
+    private $mailcollectorsId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="text", length=65535, nullable=true)
+     */
+    private $subject;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="messageid", type="string", length=255, nullable=false)
+     */
+    private $messageid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reason", type="integer", nullable=false)
+     */
+    private $reason = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

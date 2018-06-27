@@ -1,0 +1,110 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiTicketrecurrents
+ *
+ * @ORM\Table(name="glpi_ticketrecurrents", indexes={@ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_recursive", columns={"is_recursive"}), @ORM\Index(name="is_active", columns={"is_active"}), @ORM\Index(name="tickettemplates_id", columns={"tickettemplates_id"}), @ORM\Index(name="next_creation_date", columns={"next_creation_date"})})
+ * @ORM\Entity
+ */
+class GlpiTicketrecurrents
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickettemplates_id", type="integer", nullable=false)
+     */
+    private $tickettemplatesId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin_date", type="datetime", nullable=true)
+     */
+    private $beginDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="periodicity", type="string", length=255, nullable=true)
+     */
+    private $periodicity;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="create_before", type="integer", nullable=false)
+     */
+    private $createBefore = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="next_creation_date", type="datetime", nullable=true)
+     */
+    private $nextCreationDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="calendars_id", type="integer", nullable=false)
+     */
+    private $calendarsId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="datetime", nullable=true)
+     */
+    private $endDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

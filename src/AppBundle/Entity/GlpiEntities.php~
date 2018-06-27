@@ -1,0 +1,467 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiEntities
+ *
+ * @ORM\Table(name="glpi_entities", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"entities_id", "name"})}, indexes={@ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiEntities
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="completename", type="text", length=65535, nullable=true)
+     */
+    private $completename;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sons_cache", type="text", nullable=true)
+     */
+    private $sonsCache;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ancestors_cache", type="text", nullable=true)
+     */
+    private $ancestorsCache;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text", length=65535, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postcode", type="string", length=255, nullable=true)
+     */
+    private $postcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="town", type="string", length=255, nullable=true)
+     */
+    private $town;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state", type="string", length=255, nullable=true)
+     */
+    private $state;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="website", type="string", length=255, nullable=true)
+     */
+    private $website;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phonenumber", type="string", length=255, nullable=true)
+     */
+    private $phonenumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fax", type="string", length=255, nullable=true)
+     */
+    private $fax;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="admin_email", type="string", length=255, nullable=true)
+     */
+    private $adminEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="admin_email_name", type="string", length=255, nullable=true)
+     */
+    private $adminEmailName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="admin_reply", type="string", length=255, nullable=true)
+     */
+    private $adminReply;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="admin_reply_name", type="string", length=255, nullable=true)
+     */
+    private $adminReplyName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notification_subject_tag", type="string", length=255, nullable=true)
+     */
+    private $notificationSubjectTag;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ldap_dn", type="string", length=255, nullable=true)
+     */
+    private $ldapDn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tag", type="string", length=255, nullable=true)
+     */
+    private $tag;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="authldaps_id", type="integer", nullable=false)
+     */
+    private $authldapsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mail_domain", type="string", length=255, nullable=true)
+     */
+    private $mailDomain;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entity_ldapfilter", type="text", length=65535, nullable=true)
+     */
+    private $entityLdapfilter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mailing_signature", type="text", length=65535, nullable=true)
+     */
+    private $mailingSignature;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cartridges_alert_repeat", type="integer", nullable=false)
+     */
+    private $cartridgesAlertRepeat = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="consumables_alert_repeat", type="integer", nullable=false)
+     */
+    private $consumablesAlertRepeat = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="use_licenses_alert", type="integer", nullable=false)
+     */
+    private $useLicensesAlert = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="send_licenses_alert_before_delay", type="integer", nullable=false)
+     */
+    private $sendLicensesAlertBeforeDelay = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="use_contracts_alert", type="integer", nullable=false)
+     */
+    private $useContractsAlert = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="send_contracts_alert_before_delay", type="integer", nullable=false)
+     */
+    private $sendContractsAlertBeforeDelay = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="use_infocoms_alert", type="integer", nullable=false)
+     */
+    private $useInfocomsAlert = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="send_infocoms_alert_before_delay", type="integer", nullable=false)
+     */
+    private $sendInfocomsAlertBeforeDelay = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="use_reservations_alert", type="integer", nullable=false)
+     */
+    private $useReservationsAlert = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="autoclose_delay", type="integer", nullable=false)
+     */
+    private $autocloseDelay = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notclosed_delay", type="integer", nullable=false)
+     */
+    private $notclosedDelay = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="calendars_id", type="integer", nullable=false)
+     */
+    private $calendarsId = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="auto_assign_mode", type="integer", nullable=false)
+     */
+    private $autoAssignMode = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickettype", type="integer", nullable=false)
+     */
+    private $tickettype = '-2';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="max_closedate", type="datetime", nullable=true)
+     */
+    private $maxClosedate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="inquest_config", type="integer", nullable=false)
+     */
+    private $inquestConfig = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="inquest_rate", type="integer", nullable=false)
+     */
+    private $inquestRate = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="inquest_delay", type="integer", nullable=false)
+     */
+    private $inquestDelay = '-10';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="inquest_URL", type="string", length=255, nullable=true)
+     */
+    private $inquestUrl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autofill_warranty_date", type="string", length=255, nullable=false)
+     */
+    private $autofillWarrantyDate = '-2';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autofill_use_date", type="string", length=255, nullable=false)
+     */
+    private $autofillUseDate = '-2';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autofill_buy_date", type="string", length=255, nullable=false)
+     */
+    private $autofillBuyDate = '-2';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autofill_delivery_date", type="string", length=255, nullable=false)
+     */
+    private $autofillDeliveryDate = '-2';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autofill_order_date", type="string", length=255, nullable=false)
+     */
+    private $autofillOrderDate = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickettemplates_id", type="integer", nullable=false)
+     */
+    private $tickettemplatesId = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id_software", type="integer", nullable=false)
+     */
+    private $entitiesIdSoftware = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="default_contract_alert", type="integer", nullable=false)
+     */
+    private $defaultContractAlert = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="default_infocom_alert", type="integer", nullable=false)
+     */
+    private $defaultInfocomAlert = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="default_cartridges_alarm_threshold", type="integer", nullable=false)
+     */
+    private $defaultCartridgesAlarmThreshold = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="default_consumables_alarm_threshold", type="integer", nullable=false)
+     */
+    private $defaultConsumablesAlarmThreshold = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="delay_send_emails", type="integer", nullable=false)
+     */
+    private $delaySendEmails = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="is_notif_enable_default", type="integer", nullable=false)
+     */
+    private $isNotifEnableDefault = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="inquest_duration", type="integer", nullable=false)
+     */
+    private $inquestDuration = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autofill_decommission_date", type="string", length=255, nullable=false)
+     */
+    private $autofillDecommissionDate = '-2';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

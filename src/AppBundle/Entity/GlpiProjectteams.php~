@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiProjectteams
+ *
+ * @ORM\Table(name="glpi_projectteams", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"projects_id", "itemtype", "items_id"})}, indexes={@ORM\Index(name="item", columns={"itemtype", "items_id"})})
+ * @ORM\Entity
+ */
+class GlpiProjectteams
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="projects_id", type="integer", nullable=false)
+     */
+    private $projectsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=true)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

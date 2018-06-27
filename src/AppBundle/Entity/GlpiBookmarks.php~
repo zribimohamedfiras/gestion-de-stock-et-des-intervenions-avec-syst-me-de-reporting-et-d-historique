@@ -1,0 +1,89 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiBookmarks
+ *
+ * @ORM\Table(name="glpi_bookmarks", indexes={@ORM\Index(name="type", columns={"type"}), @ORM\Index(name="itemtype", columns={"itemtype"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="is_private", columns={"is_private"}), @ORM\Index(name="is_recursive", columns={"is_recursive"})})
+ * @ORM\Entity
+ */
+class GlpiBookmarks
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_private", type="boolean", nullable=false)
+     */
+    private $isPrivate = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '-1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
+     */
+    private $path;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="query", type="text", length=65535, nullable=true)
+     */
+    private $query;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

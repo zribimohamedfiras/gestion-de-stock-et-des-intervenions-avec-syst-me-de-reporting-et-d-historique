@@ -1,0 +1,320 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiAuthldaps
+ *
+ * @ORM\Table(name="glpi_authldaps", indexes={@ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="is_default", columns={"is_default"}), @ORM\Index(name="is_active", columns={"is_active"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiAuthldaps
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="host", type="string", length=255, nullable=true)
+     */
+    private $host;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="basedn", type="string", length=255, nullable=true)
+     */
+    private $basedn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rootdn", type="string", length=255, nullable=true)
+     */
+    private $rootdn;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="port", type="integer", nullable=false)
+     */
+    private $port = '389';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condition", type="text", length=65535, nullable=true)
+     */
+    private $condition;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login_field", type="string", length=255, nullable=true)
+     */
+    private $loginField = 'uid';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_tls", type="boolean", nullable=false)
+     */
+    private $useTls = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="group_field", type="string", length=255, nullable=true)
+     */
+    private $groupField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="group_condition", type="text", length=65535, nullable=true)
+     */
+    private $groupCondition;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="group_search_type", type="integer", nullable=false)
+     */
+    private $groupSearchType = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="group_member_field", type="string", length=255, nullable=true)
+     */
+    private $groupMemberField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email1_field", type="string", length=255, nullable=true)
+     */
+    private $email1Field;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="realname_field", type="string", length=255, nullable=true)
+     */
+    private $realnameField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstname_field", type="string", length=255, nullable=true)
+     */
+    private $firstnameField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone_field", type="string", length=255, nullable=true)
+     */
+    private $phoneField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone2_field", type="string", length=255, nullable=true)
+     */
+    private $phone2Field;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mobile_field", type="string", length=255, nullable=true)
+     */
+    private $mobileField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment_field", type="string", length=255, nullable=true)
+     */
+    private $commentField;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_dn", type="boolean", nullable=false)
+     */
+    private $useDn = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="time_offset", type="integer", nullable=false)
+     */
+    private $timeOffset = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="deref_option", type="integer", nullable=false)
+     */
+    private $derefOption = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_field", type="string", length=255, nullable=true)
+     */
+    private $titleField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="category_field", type="string", length=255, nullable=true)
+     */
+    private $categoryField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="language_field", type="string", length=255, nullable=true)
+     */
+    private $languageField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entity_field", type="string", length=255, nullable=true)
+     */
+    private $entityField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entity_condition", type="text", length=65535, nullable=true)
+     */
+    private $entityCondition;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_default", type="boolean", nullable=false)
+     */
+    private $isDefault = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rootdn_passwd", type="string", length=255, nullable=true)
+     */
+    private $rootdnPasswd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="registration_number_field", type="string", length=255, nullable=true)
+     */
+    private $registrationNumberField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email2_field", type="string", length=255, nullable=true)
+     */
+    private $email2Field;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email3_field", type="string", length=255, nullable=true)
+     */
+    private $email3Field;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email4_field", type="string", length=255, nullable=true)
+     */
+    private $email4Field;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location_field", type="string", length=255, nullable=true)
+     */
+    private $locationField;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pagesize", type="integer", nullable=false)
+     */
+    private $pagesize = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ldap_maxlimit", type="integer", nullable=false)
+     */
+    private $ldapMaxlimit = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="can_support_pagesize", type="boolean", nullable=false)
+     */
+    private $canSupportPagesize = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture_field", type="string", length=255, nullable=true)
+     */
+    private $pictureField;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,68 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiCalendarsegments
+ *
+ * @ORM\Table(name="glpi_calendarsegments", indexes={@ORM\Index(name="calendars_id", columns={"calendars_id"}), @ORM\Index(name="day", columns={"day"})})
+ * @ORM\Entity
+ */
+class GlpiCalendarsegments
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="calendars_id", type="integer", nullable=false)
+     */
+    private $calendarsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="day", type="boolean", nullable=false)
+     */
+    private $day = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin", type="time", nullable=true)
+     */
+    private $begin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end", type="time", nullable=true)
+     */
+    private $end;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

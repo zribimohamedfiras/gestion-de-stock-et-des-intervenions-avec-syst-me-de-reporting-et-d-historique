@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNotificationtemplatetranslations
+ *
+ * @ORM\Table(name="glpi_notificationtemplatetranslations", indexes={@ORM\Index(name="notificationtemplates_id", columns={"notificationtemplates_id"})})
+ * @ORM\Entity
+ */
+class GlpiNotificationtemplatetranslations
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notificationtemplates_id", type="integer", nullable=false)
+     */
+    private $notificationtemplatesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="language", type="string", length=5, nullable=false)
+     */
+    private $language = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="string", length=255, nullable=false)
+     */
+    private $subject;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content_text", type="text", length=65535, nullable=true)
+     */
+    private $contentText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content_html", type="text", length=65535, nullable=true)
+     */
+    private $contentHtml;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,75 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNetworkportethernets
+ *
+ * @ORM\Table(name="glpi_networkportethernets", uniqueConstraints={@ORM\UniqueConstraint(name="networkports_id", columns={"networkports_id"})}, indexes={@ORM\Index(name="card", columns={"items_devicenetworkcards_id"}), @ORM\Index(name="netpoint", columns={"netpoints_id"}), @ORM\Index(name="type", columns={"type"}), @ORM\Index(name="speed", columns={"speed"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiNetworkportethernets
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="networkports_id", type="integer", nullable=false)
+     */
+    private $networkportsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_devicenetworkcards_id", type="integer", nullable=false)
+     */
+    private $itemsDevicenetworkcardsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="netpoints_id", type="integer", nullable=false)
+     */
+    private $netpointsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=10, nullable=true)
+     */
+    private $type = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="speed", type="integer", nullable=false)
+     */
+    private $speed = '10';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNetworkportsVlans
+ *
+ * @ORM\Table(name="glpi_networkports_vlans", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"networkports_id", "vlans_id"})}, indexes={@ORM\Index(name="vlans_id", columns={"vlans_id"})})
+ * @ORM\Entity
+ */
+class GlpiNetworkportsVlans
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="networkports_id", type="integer", nullable=false)
+     */
+    private $networkportsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="vlans_id", type="integer", nullable=false)
+     */
+    private $vlansId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tagged", type="boolean", nullable=false)
+     */
+    private $tagged = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

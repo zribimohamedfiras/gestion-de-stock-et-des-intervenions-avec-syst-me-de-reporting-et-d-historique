@@ -1,0 +1,96 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiChangevalidations
+ *
+ * @ORM\Table(name="glpi_changevalidations", indexes={@ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_recursive", columns={"is_recursive"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="users_id_validate", columns={"users_id_validate"}), @ORM\Index(name="changes_id", columns={"changes_id"}), @ORM\Index(name="submission_date", columns={"submission_date"}), @ORM\Index(name="validation_date", columns={"validation_date"}), @ORM\Index(name="status", columns={"status"})})
+ * @ORM\Entity
+ */
+class GlpiChangevalidations
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="changes_id", type="integer", nullable=false)
+     */
+    private $changesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id_validate", type="integer", nullable=false)
+     */
+    private $usersIdValidate = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment_submission", type="text", length=65535, nullable=true)
+     */
+    private $commentSubmission;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment_validation", type="text", length=65535, nullable=true)
+     */
+    private $commentValidation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=false)
+     */
+    private $status = '2';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="submission_date", type="datetime", nullable=true)
+     */
+    private $submissionDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="validation_date", type="datetime", nullable=true)
+     */
+    private $validationDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

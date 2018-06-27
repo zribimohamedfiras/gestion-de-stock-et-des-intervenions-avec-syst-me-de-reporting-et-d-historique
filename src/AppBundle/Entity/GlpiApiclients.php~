@@ -1,0 +1,110 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiApiclients
+ *
+ * @ORM\Table(name="glpi_apiclients", indexes={@ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="is_active", columns={"is_active"})})
+ * @ORM\Entity
+ */
+class GlpiApiclients
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ipv4_range_start", type="bigint", nullable=true)
+     */
+    private $ipv4RangeStart;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ipv4_range_end", type="bigint", nullable=true)
+     */
+    private $ipv4RangeEnd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ipv6", type="string", length=255, nullable=true)
+     */
+    private $ipv6;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="app_token", type="string", length=255, nullable=true)
+     */
+    private $appToken;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="app_token_date", type="datetime", nullable=true)
+     */
+    private $appTokenDate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="dolog_method", type="boolean", nullable=false)
+     */
+    private $dologMethod = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

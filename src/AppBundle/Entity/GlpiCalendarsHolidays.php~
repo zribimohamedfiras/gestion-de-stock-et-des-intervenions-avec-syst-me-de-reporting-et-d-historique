@@ -1,0 +1,40 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiCalendarsHolidays
+ *
+ * @ORM\Table(name="glpi_calendars_holidays", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"calendars_id", "holidays_id"})}, indexes={@ORM\Index(name="holidays_id", columns={"holidays_id"})})
+ * @ORM\Entity
+ */
+class GlpiCalendarsHolidays
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="calendars_id", type="integer", nullable=false)
+     */
+    private $calendarsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="holidays_id", type="integer", nullable=false)
+     */
+    private $holidaysId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

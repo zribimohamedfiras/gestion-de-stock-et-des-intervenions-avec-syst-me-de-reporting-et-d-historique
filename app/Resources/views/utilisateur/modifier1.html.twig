@@ -1,0 +1,267 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Modifier Utilisateur{% endblock %}
+{% block body %}
+    <div class="right_col" role="main">
+        <div class="">
+
+
+
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Modifier Utilisateur <small>Gestion Utilisateur</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <br />
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ path("modifuser") }}" >
+                                <input type="hidden" value="{{ res.getId() }}" name="id">
+                                <input type="hidden" id="Username" name="Username" required="required" class="form-control col-md-7 col-xs-12 " value="{{ res.getUsername() }}">
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Email">Email <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="email" id="Email" disabled name="Email" required="required" value="{{ res.getEmail() }}" class="form-control col-md-7 col-xs-12 disabled" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nom">Nom <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="Nom" name="Nom" required="required" value="{{ res.getNom() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="NomAr">Nom (ar) <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="NomAr" name="NomAr" required="required" value="{{ res.getNomAr() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Prenom">Prenom <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="Prenom" name="Prenom" required="required" value="{{ res.getPrenom() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="PrenomAr">Prenom (ar) <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="PrenomAr" name="PrenomAr" required="required" value="{{ res.getPrenomAr() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ncin">Ncin <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="number" id="Ncin" name="Ncin" required="required" value="{{ res.getNcin() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Matricule">Matricule <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="number" id="Matricule" name="Matricule" required="required" value="{{ res.getMatricule() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Societe">Societe <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="Societe" name="Societe" required="required" value="{{ res.getSociete() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="FonctionAr">Fonction (ar) <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="FonctionAr" name="FonctionAr" required="required" value="{{ res.getFonctionAr() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="CategorieAr">Categorie (ar) <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="CategorieAr" name="CategorieAr" required="required" value="{{ res.getCategorieAr() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="FonctionFr">Fonction (Fr) <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="FonctionFr" name="FonctionFr" required="required" value="{{ res.getFonctionFr() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Direction">Direction <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="Direction" name="Direction" required="required" value="{{ res.getDirection() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Unite">Unite <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="Unite" name="Unite" required="required" value="{{ res.getUnite() }}" class="form-control col-md-7 col-xs-12" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Astreint">Astreint<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="select2_single form-control" tabindex="-1" name="Astreint" required="true">
+                                            <option></option>
+
+                                            <option value="0">Non astreint</option>
+                                            <option value="1">Astreint</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Role">Role<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="select2_single form-control" tabindex="-1" name="Role" required="true">
+                                            <option></option>
+
+                                            <option value="ROLE_USER">Utilsateur</option>
+                                            <option value="ROLE_ADMIN">Admin</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">Annuler</button>
+                                        <a id="modal-853909" href="#modal-container-853909" role="button" class="btn btn-default submit" data-toggle="modal">Valider</a>
+
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="modal-container-853909" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    ×
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">
+                                                    Update
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Confirmation du modification
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                    Close
+                                                </button>
+
+                                                <button type="submit" class="btn btn-success">Valider</button>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#birthday').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+{% endblock %}

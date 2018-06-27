@@ -1,0 +1,82 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiSlalevels
+ *
+ * @ORM\Table(name="glpi_slalevels", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="is_active", columns={"is_active"}), @ORM\Index(name="slts_id", columns={"slts_id"})})
+ * @ORM\Entity
+ */
+class GlpiSlalevels
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="slts_id", type="integer", nullable=false)
+     */
+    private $sltsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="execution_time", type="integer", nullable=false)
+     */
+    private $executionTime;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="match", type="string", length=10, nullable=true)
+     */
+    private $match;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uuid", type="string", length=255, nullable=true)
+     */
+    private $uuid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

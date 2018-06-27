@@ -1,0 +1,31 @@
+<head>
+    <meta charset="UTF-8" />
+    <title>pdf</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+</head>
+<body style="font-size: 16pt; text-align: right;   margin-right:50px; margin-top: 50px" >
+
+<center><p><b style="color: transparent;"> إذن بمأمورية لإستعمل عربة مصلحة<br></b><br>  <b> {{ datefin }} </b>  <b style="color: transparent;">صالح  من</b> <b>{{ datedebut }}     </b>      <b style="color: transparent;">   إلى      </b></p></center><br>
+<p><div class="col-xs-9"><b> {{ demandeur.getNomAr() }} {{ demandeur.getPrenomAr() }} </b></div><div class="col-xs-3"><b style="color: transparent;">  يرخص للسيد (ة) : </b></div></p>
+<p><b> &nbsp;{{ (demandeur.getNcin()/10000000)%10 }} &nbsp;&nbsp; {{ (demandeur.getNcin()/1000000)%10 }}&nbsp;&nbsp; {{ (demandeur.getNcin()/100000)%10 }}&nbsp;&nbsp; {{ (demandeur.getNcin()/10000)%10 }}&nbsp;&nbsp; {{ (demandeur.getNcin()/1000)%10 }}&nbsp;&nbsp; {{ (demandeur.getNcin()/100)%10 }}&nbsp;&nbsp; {{ (demandeur.getNcin()/10)%10 }}&nbsp;&nbsp; {{ demandeur.getNcin()%10 }}&nbsp; </b> <b style="color: transparent;">صاحب (ة) بطاقة التعريف الوطنية :</b></p>
+<p><div class="col-xs-9"><b> {{ demandeur.getCategorieAr() }} </b></div><div class="col-xs-3"><b style="color: transparent;"> الرتبة أو الصنف : </b></div></p>
+<p><div class="col-xs-9"><b>{{ demandeur.getFonctionAr() }} </b></div><div class="col-xs-3"><b style="color: transparent;"> الخطة الوظيفية : </b></div></p>
+<p><div class="col-xs-9"><b> {{ vehicule }} </b></div><div class="col-xs-3"><b style="color: transparent;">  في إستعمال عربة المصلحة رقم : </b></div></p>
+<p><div class="col-xs-9"><b> {{ cause }}</b></div><div class="col-xs-3"><b style="color: transparent;"> الغاية من إستعمال العربة : </b></div></p>
+<p><div class="col-xs-1"><b> {{ heuredepart }} </b></div><div class="col-xs-2"><b style="color: transparent;"> الساعة  </b></div><div class="col-xs-3"><b>  {{ datedebut }}  </b></div><div class="col-xs-2"><b style="color: transparent;"> التاريخ : </b></div> <div class="col-xs-2"><b> {{ lieudepart }} </b></div><div class="col-xs-2"><b style="color: transparent;"> مكان الانطلاق : </b></div></p>
+<p><div class="col-xs-1"><b> {{ heurearrive }} </b></div><div class="col-xs-2"><b style="color: transparent;"> الساعة  </b></div><div class="col-xs-3"><b>  {{ datefin }}  </b></div><div class="col-xs-2"><b style="color: transparent;"> التاريخ : </b></div> <div class="col-xs-2"><b> {{ lieuarrive }} </b></div><div class="col-xs-2"><b style="color: transparent;"> مكان الانطلاق : </b></div></p>
+{% set j=nbrintervenant %}
+{% for inter in intervenant%}
+    {% if inter !=null %}
+        <div class="row"><p><div class="col-xs-3"><b> {{ inter.getNcin() }} </b></div><div class="col-xs-2"><b style="color: transparent;"> ب.ت.و.* :  </b></div><div class="col-xs-4"><b>{{ inter.getNomAr() }} {{ inter.getPrenomAr() }}</b></div><div class="col-xs-3"><b style="color: transparent;"> المرافقون : السيد (ة) : </b></div></p></div>
+        {% else %}
+            {% set j=j-1 %}
+    {% endif %}
+{% endfor %}
+{% for i in range(1,(4-nbrintervenant)) %}
+<p style="color: transparent;"><div class="col-xs-3" style="color: transparent"><b> 07214200 </b></div><div class="col-xs-2" style="color: transparent"><b> ب.ت.و.* :  </b></div><div class="col-xs-4" style="color: transparent"><b>  فراس زريبي  </b></div><div class="col-xs-3" style="color: transparent"><b> المرافقون : السيد (ة) : </b></div> </p>
+{% endfor %}
+<p><div class="col-xs-9"><b>{{ charge }} </b></div><div class="col-xs-3"><b style="color: transparent;"> الحمولة : </b></div></p>
+<p><div class="col-xs-2"><b> {{ "now"|date("d/m/Y") }} </b></div><div class="col-xs-1"><b style="color: transparent;"> في  </b></div><div class="col-xs-2"><b>  {{ lieudepart }}  </b></div></p>
+
+</body>

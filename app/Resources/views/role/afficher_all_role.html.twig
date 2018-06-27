@@ -1,0 +1,238 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Afficher la liste des  Roles!{% endblock %}
+
+
+    {% block stylesheet %}
+        {{ parent() }}
+
+        {% stylesheets 'Bundles/app/css/styles.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/jquery.dataTables.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/buttons.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/fixedHeader.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/responsive.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/scroller.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+        {% stylesheets 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets 'https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+    {% endblock %}
+
+
+{% block body %}
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Afficher Roles <small>Gestion Role</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="clearfix"></div>
+                            <br><br>
+
+
+                            {% for flash_message in app.session.flashBag.get('notice') %}
+                                <div  class="alert alert-success" style="width: 65%">
+                                    {{ flash_message }}<br>
+
+
+                                </div>
+                            {% endfor %}
+
+
+
+                            <br><br>
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+                                <a class="btn btn-default submit" href="{{ path('ajoutrole') }}" >Ajouter role</a>
+
+                            </div>
+                            <br><br><br><br>
+
+
+
+                            <div class="row">
+
+
+                                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th><center>Name</center></th>
+                                        <th><center>Description</center></th>
+
+                                        <th><center>Modifier</center></th>
+                                        <th><center>Delete</center></th>
+                                        <th><center>Affecter un Role</center></th>
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    {% for r in res %}
+                                        <tr>
+
+                                            <td><center> {{ r.getName() }} </center> </td>
+
+                                            <td> <center> {{ r.getDescription() }} </center> </td>
+
+
+                                            <form action="{{ path('modifierrole') }}" method="post">
+                                                <td> <center>  <input type="hidden" name="name" value="{{ r.getName() }}"><button type="submit" class="btn btn-default submit" >Modifier</button></center></td></form>
+                                            <form action="{{ path('supprimerole') }}" method="post">
+                                                <td> <center>  <input type="hidden" name="name" value="{{ r.getName() }}">
+                                                        <input type="hidden" name="descriptionancien" value="{{ r.getDescription() }}">
+                                                        <a href="#1{{ r.getName() }}" role="button" class="btn btn-default submit" data-toggle="modal">Delete</a>
+                                                        <div class="modal fade" id="1{{ r.getName() }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                                            ×
+                                                                        </button>
+                                                                        <h4 class="modal-title" id="myModalLabel">
+                                                                            Delete
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Confirmation du suppression
+                                                                    </div>
+                                                                    <div class="modal-footer">
+
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                                            Close
+                                                                        </button>
+                                                                        <button type="submit" class="btn btn-default success">Delete</button>
+                                                                        <input type="hidden" name="name" value="{{ r.getName() }}">
+                                                                        <input type="hidden" name="descriptionancien" value="{{ r.getDescription() }}">
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </center></td></form>
+                                            <form action="{{ path('GereProfile') }}" method="post">
+                                                <td> <center>  <input type="hidden" name="nameR" value="{{ r.getName() }}"><button type="submit" class="btn btn-default submit" >Profile</button></center></td></form>
+
+                                        </tr>
+
+                                    {% endfor %}
+                                    </tbody>
+
+                                </table>
+
+
+                            </div></div></div></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <!-- form wizard -->
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/wizard/jquery.smartWizard.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jquery.dataTables.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.bootstrap.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.buttons.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.bootstrap.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jszip.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/pdfmake.min.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.html5.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/vfs_fonts.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.print.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.fixedHeader.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.keyTable.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.responsive.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/responsive.bootstrap.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.scroller.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+
+
+     <script type="text/javascript">
+         $(document).ready(function() {
+             $('#example').DataTable();
+         } );
+         TableManageButtons.init();
+     </script>
+
+ {% endblock %}

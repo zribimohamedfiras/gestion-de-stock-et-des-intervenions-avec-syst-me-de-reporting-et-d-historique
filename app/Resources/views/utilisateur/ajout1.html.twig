@@ -1,0 +1,407 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Ajout Utilisateur!{% endblock %}
+
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/select/select2.min.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/switchery/switchery.min.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+
+
+{% block body %}
+
+    <div class="right_col" role="main">
+        <div class="">
+
+
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Ajoute Utilisateur <small>Gestion Utilisateur</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content text-center" >
+
+
+
+                            {{ form_start(form) }}
+                            <div ng-app="app" ng-controller="contre"  class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <ng-form name="f">
+
+
+                                    <h2>Create Account</h2><br>
+
+                                    <div id="message" style="color: {{ color }}" >
+                                        {{ msg }}
+                                    </div>
+                                    <br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="form-group">
+                                        <p class="text-center">La Liste d'utilisateur de Glpi </p>
+
+
+                                        <select class="select2_single form-control col-md-7 col-xs-12" tabindex="-1" name="username" required="true">
+                                            <option></option>
+                                            {% for r in res %}
+                                                <option value="{{ r.getName() }}">{{ r.getName() }}</option>
+                                            {% endfor %}
+                                        </select>
+
+
+                                    </div>
+
+
+                                    <br><br><br><br><br><br><br>
+
+
+
+
+
+
+                                    <div class="form-group">
+                                        <p class="text-center">Password.</p>
+                                        <input class="form-control col-md-7 col-xs-12"  type="password" ng-model="Password" name="Password" autocomplete="off"
+                                               ng-pattern="verif" ng-minlength="6" ng-maxlength="20" required="required" placeholder="Password" id="Password"/><br />
+
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <p  style="color: #ff0000;margin-left: -0.5em;" ng-show="f.Password.$invalid && !f.Password.$pristine" class="help-block">You psw is required.</p><br>
+                                                <span style="color: #ff0000;margin-left: -0.5em;" class="error" ng-show="f.$error.Password">invalide !</span>
+
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <p style="color: #ff0000;margin-left: -0.5em;" ng-show="f.Password.$error.minlength" class="help-block">Psw is too short < 6 .</p><br>
+                                                <p style="color: #ff0000;margin-left: -0.5em;" ng-show="f.Password.$error.maxlength" class="help-block">Psw is too long > 20.</p>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <p style="color:green;margin-left: -0.5em;" ng-show="f.Password.$valid" class="help-block">Mot de passe Correct</p><br>
+                                                <span ng-show="f.Password.$error.pattern" style="color: #ff0000;margin-left: -0.5em;">Verifier Votre mot de passe SVP!.</span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <p class="text-center">Confimation Password.</p>
+
+                                        <input required equals-to="f.Password" class="form-control col-md-7 col-xs-12" autocomplete="off"  type="password" ng-model="ConfirmPassword" name="ConfirmPassword"
+                                               ng-pattern="verif" ng-minlength="6" ng-maxlength="20" required="required" placeholder="Confirmation Password:"/><br />
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                  <span style="color: #ff0000;margin-left: -0.5em;" class="text-danger col-sm-offset-3" ng-show="!f.ConfirmPassword.$error.required && f.ConfirmPassword.$error.equalsTo">
+                                              Passwords are differents
+                                                 </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <p class="text-center">Adress mail </p>
+
+                                        <input placeholder="Email" type="email" id="email" name="email" required="required"  class="form-control col-md-7 col-xs-12" autocomplete="off" >
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <span class="error" ng-show="f.email.$error">Email invalide</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.nom,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Nom'}}) }}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.nom_ar,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Nom(ar)'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.prenom,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Prenom'}}) }}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.prenom_ar,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Prenom(ar)'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.ncin,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'NCIN','max':'99999999','min':'0' ,'minlength':'8','maxlength':'8'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.matricule,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Matricule','max':'99999999','min':'0','minlength': "8",'maxlength':'8'}}) }}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.societe,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Societe'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.categorie_ar,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Categorie(ar)'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.fonction_ar,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Fonction(ar)'}}) }}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.fonction_fr,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder':'Fonction(fr)'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.direction,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder':'Direction'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.unite,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder':'Unite'}}) }}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.is_astreint,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Astreint'}}) }}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.role,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Role'}}) }}
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sd-12">
+                                            {{ form_row(form.termsAccepted,{'attr': {'class': 'custom-control custom-checkbox'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="form-group">
+
+                                        <div class="col-sd-12">
+                                            <button type="reset" class="btn btn-primary">Cancel</button>
+                                            <a id="modal-853909" href="#modal-container-853909" role="button" class="btn btn-default submit" data-toggle="modal">Ajouter Utilisateur</a>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal fade" id="modal-container-853909" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        ×
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        Save
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Vérifier les champs ou enregistré
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-success" ng-disabled="f.$invalid">Submit</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </ng-form>
+                            </div>
+                            {{ form_end(form) }}
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/select/select2.full.js'  %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#birthday').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/wizard/jquery.smartWizard.js' output='js/wizard/jquery.smartWizard.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".select2_single").select2({
+                placeholder: "Select Username",
+                allowClear: true
+            });
+            $(".select2_group").select2({});
+            $(".select2_multiple").select2({
+                maximumSelectionLength: 4,
+                placeholder: "With Max Selection limit 4",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <script>
+        var app = angular.module("app", []);
+
+        app.directive('equalsTo', [function () {
+            /*
+             * <input type="password" ng-model="Password" />
+             * <input type="password" ng-model="ConfirmPassword" equals-to="Password" />
+             */
+            return {
+                restrict: 'A', // S'utilise uniquement en tant qu'attribut
+                scope: true,
+                require: 'ngModel',
+                link: function (scope, elem, attrs, control) {
+                    var check = function () {
+                        //Valeur du champs courant
+                        var v1 = scope.$eval(attrs.ngModel); // attrs.ngModel = “ConfirmPassword”
+
+                        //valeur du champ à comparer
+                        var v2 = scope.$eval(attrs.equalsTo).$viewValue; // attrs.equalsTo = “Password”
+
+                        return v1 == v2;
+                    };
+
+                    scope.$watch(check, function (isValid) {
+                        // Défini si le champ est valide
+                        control.$setValidity("equalsTo", isValid);
+                    });
+                }
+            };
+        }]);
+
+        app.controller('contre', ['$scope', function ($scope) {
+            $scope.verif = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20}$/;
+        }]);
+    </script>
+
+
+
+
+
+{% endblock %}

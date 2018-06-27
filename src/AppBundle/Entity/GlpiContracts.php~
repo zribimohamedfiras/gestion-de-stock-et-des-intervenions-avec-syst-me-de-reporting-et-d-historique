@@ -1,0 +1,222 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiContracts
+ *
+ * @ORM\Table(name="glpi_contracts", indexes={@ORM\Index(name="begin_date", columns={"begin_date"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="contracttypes_id", columns={"contracttypes_id"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_deleted", columns={"is_deleted"}), @ORM\Index(name="use_monday", columns={"use_monday"}), @ORM\Index(name="use_saturday", columns={"use_saturday"}), @ORM\Index(name="alert", columns={"alert"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiContracts
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="num", type="string", length=255, nullable=true)
+     */
+    private $num;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="contracttypes_id", type="integer", nullable=false)
+     */
+    private $contracttypesId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin_date", type="date", nullable=true)
+     */
+    private $beginDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duration", type="integer", nullable=false)
+     */
+    private $duration = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notice", type="integer", nullable=false)
+     */
+    private $notice = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="periodicity", type="integer", nullable=false)
+     */
+    private $periodicity = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="billing", type="integer", nullable=false)
+     */
+    private $billing = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="accounting_number", type="string", length=255, nullable=true)
+     */
+    private $accountingNumber;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    private $isDeleted = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="week_begin_hour", type="time", nullable=false)
+     */
+    private $weekBeginHour = '00:00:00';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="week_end_hour", type="time", nullable=false)
+     */
+    private $weekEndHour = '00:00:00';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="saturday_begin_hour", type="time", nullable=false)
+     */
+    private $saturdayBeginHour = '00:00:00';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="saturday_end_hour", type="time", nullable=false)
+     */
+    private $saturdayEndHour = '00:00:00';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_saturday", type="boolean", nullable=false)
+     */
+    private $useSaturday = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="monday_begin_hour", type="time", nullable=false)
+     */
+    private $mondayBeginHour = '00:00:00';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="monday_end_hour", type="time", nullable=false)
+     */
+    private $mondayEndHour = '00:00:00';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_monday", type="boolean", nullable=false)
+     */
+    private $useMonday = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_links_allowed", type="integer", nullable=false)
+     */
+    private $maxLinksAllowed = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="alert", type="integer", nullable=false)
+     */
+    private $alert = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="renewal", type="integer", nullable=false)
+     */
+    private $renewal = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="template_name", type="string", length=255, nullable=true)
+     */
+    private $templateName;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_template", type="boolean", nullable=false)
+     */
+    private $isTemplate = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

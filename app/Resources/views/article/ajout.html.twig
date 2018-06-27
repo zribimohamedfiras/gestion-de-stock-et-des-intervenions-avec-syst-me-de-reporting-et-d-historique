@@ -1,0 +1,300 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Ajout Article!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/select/select2.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+    {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/switchery/switchery.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+{% block body %}
+
+    <div class="right_col" role="main">
+        <div class="">
+
+
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Ajout Article <small>Gestion Stock</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <center><a class="btn btn-default submit" href="{{ path('affichearticles') }}" >Retour</a></center>
+
+                    <br />
+                    <div id="wizard" class="form_wizard wizard_horizontal">
+                                <ul class="wizard_steps">
+
+
+
+
+                                    <li>
+
+                                        <a href="#step-1">
+                                            <span class="step_no">1</span>
+                                            <span class="step_descr">
+                                            Personne Impliqué<br />
+
+                                        </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-2">
+                                            <span class="step_no">2</span>
+                                            <span class="step_descr">Article
+                                            <br />
+
+                                        </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-3">
+                                            <span class="step_no">3</span>
+                                            <span class="step_descr">
+                                            Numero de Serie<br/>
+
+                                        </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+
+
+                    <center>
+
+                    {{ form_start(form) }}
+                        <div ng-app="showApp" ng-controller="mainController">
+                        <div id="step-1">
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Demandeur <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="select2_single form-control" tabindex="-1" name="demandeur" required="true">
+                                        <option></option>
+                                        {% for t in users %}
+                                            <option value="{{ t.getUsername() }}">{{ t.getPrenom() }} {{ t.getNom() }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                            <br><br>
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Magasinier <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="select2_single form-control" tabindex="-1" name="magasinier" required="true">
+                                        <option></option>
+                                        {% for t in users %}
+                                            <option value="{{ t.getUsername() }}">{{ t.getPrenom() }} {{ t.getNom() }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                            <br><br>
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Signataire <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="select2_single form-control" tabindex="-1" name="signataire" required="true">
+                                        <option></option>
+                                        {% for t in users %}
+                                            <option value="{{ t.getUsername() }}">{{ t.getPrenom() }} {{ t.getNom() }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                            <br><br><br>
+                            <div class="ln_solid"></div>
+                        </div>
+                        <div id="step-2" >
+                        <div class="form-group">
+
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                {{ form_row(form.designation,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Designation'}}) }}
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                {{ form_row(form.marque,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Marque'}}) }}
+
+                            </div>
+                        </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            {{ form_row(form.qteInitial,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Quantité initial','min': "0","ng-model": "qty"}}) }}
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            {{ form_row(form.qteActuel,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Quantité Actuel','min': "0","value": "{[{ qty }]}" }}) }}
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            {{ form_row(form.emplacement,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'emplacement'}}) }}
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            {{ form_row(form.unite,{'attr': {'class': 'form-control col-md-7 col-xs-12','placeholder': 'Unite'}}) }}
+
+                        </div>
+                    </div>
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        </div>
+                        <div id="step-3">
+                            <div ng-repeat=" n in range(1,qty)">
+                                <div class="form-group">
+                                <div class="row">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name2">Numero de Serie {[{ n}]}
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="serie{[{n}]}" name="serie{[{n}]}" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                </div>
+                                <br>
+                            </div>
+                            <br>
+                        <div class="form-group">
+
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button type="reset" class="btn btn-primary">Cancel</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    {{ form_end(form) }}
+                    </center>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#birthday').daterangepicker({
+            singleDatePicker: true,
+            calender_style: "picker_4"
+        }, function(start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    });
+</script>
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/wizard/jquery.smartWizard.js' output='js/wizard/jquery.smartWizard.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Smart Wizard
+            $('#wizard').smartWizard();
+        });
+
+        $(document).ready(function() {
+            // Smart Wizard
+            $('#wizard_verticle').smartWizard({
+                transitionEffect: 'slide'
+            });
+
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var showApp = angular.module('showApp', [])
+            .config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('{[{')
+                    .endSymbol('}]}');
+            })
+
+            .controller('mainController', function($scope) {
+                $scope.htm='';
+                $scope.nbr=1;
+                $scope.debut=' <div class="form-group"><label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name2">quantite <span class="required">*</span></label><div class="col-md-6 col-sm-6 col-xs-12">';
+                $scope.fin='</div></div>';
+                $scope.msg = '<input type="number" id="first-name2" required="required" class="form-control col-md-7 col-xs-12">';
+
+
+                $scope.isEven = function() {
+                    for ($scope.i=1;$scope.i<=$scope.nbr;$scope.i++)
+                    {
+                        $scope.htm+=$scope.debut+'<input type="number" id="'+$scope.i+'" name="'+$scope.i+'" required="required" class="form-control col-md-7 col-xs-12">'+$scope.fin;
+                    }
+
+                };
+                $scope.range = function(min, max, step) {
+                    step = step || 1;
+                    var input = [];
+                    for (var i = min; i <= max; i += step) {
+                        input.push(i);
+                    }
+                    return input;
+                };
+
+            });
+
+    </script>
+
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/select/select2.full.js' output='js/select/select2.full.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $(document).ready(function() {
+            $(".select2_single").select2({
+                placeholder: "Select un parmit les options",
+                allowClear: true
+            });
+            $(".select2_group").select2({});
+            $(".select2_multiple").select2({
+                maximumSelectionLength: 4,
+                placeholder: "With Max Selection limit 4",
+                allowClear: true
+            });
+        });
+    </script>
+{% endblock %}

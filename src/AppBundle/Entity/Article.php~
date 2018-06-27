@@ -1,0 +1,75 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Article
+ *
+ * @ORM\Table(name="article")
+ * @ORM\Entity
+ */
+class Article
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="designation", type="string", length=100, nullable=false)
+     */
+    private $designation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="marque", type="string", length=100, nullable=true)
+     */
+    private $marque;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="num_serie", type="string", length=50, nullable=false)
+     */
+    private $numSerie;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="qte_initial", type="integer", nullable=false)
+     */
+    private $qteInitial;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="qte_actuel", type="integer", nullable=false)
+     */
+    private $qteActuel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emplacement", type="string", length=20, nullable=false)
+     */
+    private $emplacement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="unite", type="string", length=20, nullable=true)
+     */
+    private $unite;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_article", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idArticle;
+
+
+}
+

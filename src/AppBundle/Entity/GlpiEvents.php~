@@ -1,0 +1,68 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiEvents
+ *
+ * @ORM\Table(name="glpi_events", indexes={@ORM\Index(name="date", columns={"date"}), @ORM\Index(name="level", columns={"level"}), @ORM\Index(name="item", columns={"type", "items_id"})})
+ * @ORM\Entity
+ */
+class GlpiEvents
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="service", type="string", length=255, nullable=true)
+     */
+    private $service;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", length=65535, nullable=true)
+     */
+    private $message;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiRuleactions
+ *
+ * @ORM\Table(name="glpi_ruleactions", indexes={@ORM\Index(name="rules_id", columns={"rules_id"}), @ORM\Index(name="field_value", columns={"field", "value"})})
+ * @ORM\Entity
+ */
+class GlpiRuleactions
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rules_id", type="integer", nullable=false)
+     */
+    private $rulesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="action_type", type="string", length=255, nullable=true)
+     */
+    private $actionType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="field", type="string", length=255, nullable=true)
+     */
+    private $field;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=255, nullable=true)
+     */
+    private $value;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

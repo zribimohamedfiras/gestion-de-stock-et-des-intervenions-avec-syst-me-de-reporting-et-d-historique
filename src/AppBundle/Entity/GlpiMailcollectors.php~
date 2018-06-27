@@ -1,0 +1,124 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiMailcollectors
+ *
+ * @ORM\Table(name="glpi_mailcollectors", indexes={@ORM\Index(name="is_active", columns={"is_active"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiMailcollectors
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="host", type="string", length=255, nullable=true)
+     */
+    private $host;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=255, nullable=true)
+     */
+    private $login;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="filesize_max", type="integer", nullable=false)
+     */
+    private $filesizeMax = '2097152';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="passwd", type="string", length=255, nullable=true)
+     */
+    private $passwd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="accepted", type="string", length=255, nullable=true)
+     */
+    private $accepted;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="refused", type="string", length=255, nullable=true)
+     */
+    private $refused;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_kerberos", type="boolean", nullable=false)
+     */
+    private $useKerberos = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="errors", type="integer", nullable=false)
+     */
+    private $errors = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_mail_date", type="boolean", nullable=false)
+     */
+    private $useMailDate = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

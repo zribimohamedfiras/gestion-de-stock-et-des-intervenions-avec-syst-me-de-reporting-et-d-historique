@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNetworkportfiberchannels
+ *
+ * @ORM\Table(name="glpi_networkportfiberchannels", uniqueConstraints={@ORM\UniqueConstraint(name="networkports_id", columns={"networkports_id"})}, indexes={@ORM\Index(name="card", columns={"items_devicenetworkcards_id"}), @ORM\Index(name="netpoint", columns={"netpoints_id"}), @ORM\Index(name="wwn", columns={"wwn"}), @ORM\Index(name="speed", columns={"speed"})})
+ * @ORM\Entity
+ */
+class GlpiNetworkportfiberchannels
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="networkports_id", type="integer", nullable=false)
+     */
+    private $networkportsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_devicenetworkcards_id", type="integer", nullable=false)
+     */
+    private $itemsDevicenetworkcardsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="netpoints_id", type="integer", nullable=false)
+     */
+    private $netpointsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="wwn", type="string", length=16, nullable=true)
+     */
+    private $wwn = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="speed", type="integer", nullable=false)
+     */
+    private $speed = '10';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

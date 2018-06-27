@@ -1,0 +1,264 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiMonitors
+ *
+ * @ORM\Table(name="glpi_monitors", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="is_template", columns={"is_template"}), @ORM\Index(name="is_global", columns={"is_global"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="manufacturers_id", columns={"manufacturers_id"}), @ORM\Index(name="groups_id", columns={"groups_id"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="locations_id", columns={"locations_id"}), @ORM\Index(name="monitormodels_id", columns={"monitormodels_id"}), @ORM\Index(name="states_id", columns={"states_id"}), @ORM\Index(name="users_id_tech", columns={"users_id_tech"}), @ORM\Index(name="monitortypes_id", columns={"monitortypes_id"}), @ORM\Index(name="is_deleted", columns={"is_deleted"}), @ORM\Index(name="groups_id_tech", columns={"groups_id_tech"}), @ORM\Index(name="is_dynamic", columns={"is_dynamic"}), @ORM\Index(name="serial", columns={"serial"}), @ORM\Index(name="otherserial", columns={"otherserial"}), @ORM\Index(name="date_creation", columns={"date_creation"}), @ORM\Index(name="is_recursive", columns={"is_recursive"})})
+ * @ORM\Entity
+ */
+class GlpiMonitors
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact", type="string", length=255, nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contact_num", type="string", length=255, nullable=true)
+     */
+    private $contactNum;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id_tech", type="integer", nullable=false)
+     */
+    private $usersIdTech = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groups_id_tech", type="integer", nullable=false)
+     */
+    private $groupsIdTech = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serial", type="string", length=255, nullable=true)
+     */
+    private $serial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otherserial", type="string", length=255, nullable=true)
+     */
+    private $otherserial;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="size", type="integer", nullable=false)
+     */
+    private $size = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_micro", type="boolean", nullable=false)
+     */
+    private $haveMicro = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_speaker", type="boolean", nullable=false)
+     */
+    private $haveSpeaker = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_subd", type="boolean", nullable=false)
+     */
+    private $haveSubd = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_bnc", type="boolean", nullable=false)
+     */
+    private $haveBnc = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_dvi", type="boolean", nullable=false)
+     */
+    private $haveDvi = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_pivot", type="boolean", nullable=false)
+     */
+    private $havePivot = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_hdmi", type="boolean", nullable=false)
+     */
+    private $haveHdmi = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_displayport", type="boolean", nullable=false)
+     */
+    private $haveDisplayport = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="locations_id", type="integer", nullable=false)
+     */
+    private $locationsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="monitortypes_id", type="integer", nullable=false)
+     */
+    private $monitortypesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="monitormodels_id", type="integer", nullable=false)
+     */
+    private $monitormodelsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="manufacturers_id", type="integer", nullable=false)
+     */
+    private $manufacturersId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_global", type="boolean", nullable=false)
+     */
+    private $isGlobal = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    private $isDeleted = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_template", type="boolean", nullable=false)
+     */
+    private $isTemplate = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="template_name", type="string", length=255, nullable=true)
+     */
+    private $templateName;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groups_id", type="integer", nullable=false)
+     */
+    private $groupsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="states_id", type="integer", nullable=false)
+     */
+    private $statesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ticket_tco", type="decimal", precision=20, scale=4, nullable=true)
+     */
+    private $ticketTco = '0.0000';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_dynamic", type="boolean", nullable=false)
+     */
+    private $isDynamic = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

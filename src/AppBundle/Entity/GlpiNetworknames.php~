@@ -1,0 +1,96 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNetworknames
+ *
+ * @ORM\Table(name="glpi_networknames", indexes={@ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="FQDN", columns={"name", "fqdns_id"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="fqdns_id", columns={"fqdns_id"}), @ORM\Index(name="is_deleted", columns={"is_deleted"}), @ORM\Index(name="is_dynamic", columns={"is_dynamic"}), @ORM\Index(name="item", columns={"itemtype", "items_id", "is_deleted"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiNetworknames
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="fqdns_id", type="integer", nullable=false)
+     */
+    private $fqdnsId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    private $isDeleted = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_dynamic", type="boolean", nullable=false)
+     */
+    private $isDynamic = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

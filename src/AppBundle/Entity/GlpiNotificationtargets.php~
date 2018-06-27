@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNotificationtargets
+ *
+ * @ORM\Table(name="glpi_notificationtargets", indexes={@ORM\Index(name="items", columns={"type", "items_id"}), @ORM\Index(name="notifications_id", columns={"notifications_id"})})
+ * @ORM\Entity
+ */
+class GlpiNotificationtargets
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="notifications_id", type="integer", nullable=false)
+     */
+    private $notificationsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

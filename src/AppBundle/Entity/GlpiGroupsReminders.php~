@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiGroupsReminders
+ *
+ * @ORM\Table(name="glpi_groups_reminders", indexes={@ORM\Index(name="reminders_id", columns={"reminders_id"}), @ORM\Index(name="groups_id", columns={"groups_id"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_recursive", columns={"is_recursive"})})
+ * @ORM\Entity
+ */
+class GlpiGroupsReminders
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reminders_id", type="integer", nullable=false)
+     */
+    private $remindersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groups_id", type="integer", nullable=false)
+     */
+    private $groupsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '-1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

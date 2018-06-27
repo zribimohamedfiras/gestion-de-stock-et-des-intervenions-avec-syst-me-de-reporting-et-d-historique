@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiSlalevelcriterias
+ *
+ * @ORM\Table(name="glpi_slalevelcriterias", indexes={@ORM\Index(name="slalevels_id", columns={"slalevels_id"}), @ORM\Index(name="condition", columns={"condition"})})
+ * @ORM\Entity
+ */
+class GlpiSlalevelcriterias
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="slalevels_id", type="integer", nullable=false)
+     */
+    private $slalevelsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="criteria", type="string", length=255, nullable=true)
+     */
+    private $criteria;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="condition", type="integer", nullable=false)
+     */
+    private $condition = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pattern", type="string", length=255, nullable=true)
+     */
+    private $pattern;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

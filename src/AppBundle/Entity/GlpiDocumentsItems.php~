@@ -1,0 +1,68 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiDocumentsItems
+ *
+ * @ORM\Table(name="glpi_documents_items", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"documents_id", "itemtype", "items_id"})}, indexes={@ORM\Index(name="item", columns={"itemtype", "items_id", "entities_id", "is_recursive"})})
+ * @ORM\Entity
+ */
+class GlpiDocumentsItems
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="documents_id", type="integer", nullable=false)
+     */
+    private $documentsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

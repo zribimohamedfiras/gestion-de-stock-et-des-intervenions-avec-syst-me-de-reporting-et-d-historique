@@ -1,0 +1,254 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Afficher Missions {% endblock %}
+
+
+    {% block stylesheet %}
+        {{ parent() }}
+
+        {% stylesheets 'Bundles/app/css/styles.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/jquery.dataTables.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/buttons.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/fixedHeader.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/responsive.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/scroller.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+        {% stylesheets 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets 'https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+    {% endblock %}
+
+
+{% block body %}
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Afficher Missions <small>Gestion Mission </small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="clearfix"></div>
+                            <br><br>
+
+                            <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-4">
+                                <a class="btn btn-default submit" href="{{ path('demandemission') }}" >Ajouter Mission</a>
+
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                <a class="btn btn-default submit" href="{{ path('affichervehicule') }}" >Afficher Vehicules
+                                </a>
+                            </div>
+                            <br><br><br><br>
+
+                            <div class="row">
+                                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+
+                                    <tr>
+                                        <th colspan="8"><center>رقم المهمة</center></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2"><center>رقم التدخل </center></th>
+                                        <th colspan="2"><center>رقم العربة</center></th>
+                                        <th colspan="2"><center>طالب المهمة</center></th>
+                                        <th colspan="2"><center>ب.ت.و</center></th>
+                                    </tr>
+                                    <tr>
+                                        <th><center>مكان الانطلاق</center></th>
+                                        <th><center>تاريخ الإنطلاق</center></th>
+                                        <th><center>ساعة الإنطلاق</center></th>
+                                        <th><center>المكان المقصود</center></th>
+                                        <th><center>تاريخ الرجوع</center></th>
+                                        <th><center>ساعة الرجوع</center></th>
+                                        <th><center>غاية المهمة</center></th>
+                                        <th><center>الحمولة</center></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="4"><center>المرافق</center></th>
+                                        <th colspan="4"><center>ب.ت.و</center></th>
+                                    </tr>
+
+                                    </thead>
+                                    <tbody>
+                                    {% set i=0 %}
+                                    {% for miss in mission %}
+                                        {% set i=i+1 %}
+                                        <tr>
+                                            <td colspan="8"><center><span>{{ miss.getNummission() }}</span></center></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><center> {{ miss.getIntervention().getIdIntervention() }} </center></td>
+                                            <td colspan="2"><center> {{ miss.getVehicule().getNumvehicule() }} </center></td>
+                                            <td colspan="2"><center> {{ miss.getDemandeur().getNomAr() }} {{ miss.getDemandeur().getPrenomAr() }} </center></td>
+                                            <td colspan="2"><center> {{ miss.getDemandeur().getNcin() }} </center></td>
+                                        </tr>
+                                        <tr>
+                                            <td><center> {{ miss.getLieudepart() }} </center></td>
+                                            <td><center> {{ miss.getDatedepart() }} </center></td>
+                                            <td><center> {{ miss.getHeuredepart() }} </center></td>
+                                            <td><center> {{ miss.getLieuarriver() }} </center></td>
+                                            <td><center> {{ miss.getDatearriver() }} </center></td>
+                                            <td><center> {{ miss.getHeurearriver() }} </center></td>
+                                            <td><center> {{ miss.getCause() }} </center></td>
+                                            <td><center> {{ miss.getCharge() }} </center></td>
+                                        </tr>
+
+                                            {% for ba in intervenant[i] %}
+                                                <tr>
+                                                    <td colspan="4"><center> {{ ba.getIdutilisateur().getNomAr() }} {{ ba.getIdutilisateur().getPrenomAr() }} </center></td>
+                                                    <td colspan="4"><center> {{ ba.getIdutilisateur().getNcin() }} </center></td>
+                                                </tr>
+                                            {% endfor %}
+
+
+                                        <tr><form action="{{ path('supprimermission') }}" method="post">
+                                                <td colspan="8"> <center>  <input type="hidden" name="nummission" value="{{ miss.getNummission() }}">
+
+                                                        <a href="#1{{ miss.getNummission() }}" role="button" class="btn btn-default submit" data-toggle="modal">Delete</a>
+                                                        <div class="modal fade" id="1{{ miss.getNummission() }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                                            ×
+                                                                        </button>
+                                                                        <h4 class="modal-title" id="myModalLabel">
+                                                                            Delete
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Confirmation du suppression
+                                                                    </div>
+                                                                    <div class="modal-footer">
+
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                                            Close
+                                                                        </button>
+                                                                        <button type="submit" class="btn btn-default success">Delete</button>
+                                                                        <input type="hidden" name="name" value="{{ miss.getNummission() }}">
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <br><div class="ln_solid"></div><div class="ln_solid"></div></center>
+                                                        </td></form></tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div></div></div></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <!-- form wizard -->
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/wizard/jquery.smartWizard.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jquery.dataTables.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.bootstrap.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.buttons.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.bootstrap.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jszip.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/pdfmake.min.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.html5.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/vfs_fonts.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.print.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.fixedHeader.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.keyTable.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.responsive.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/responsive.bootstrap.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.scroller.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+
+
+     <script type="text/javascript">
+         $(document).ready(function() {
+             $('#example').DataTable();
+         } );
+         TableManageButtons.init();
+     </script>
+
+ {% endblock %}

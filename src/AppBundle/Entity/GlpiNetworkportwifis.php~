@@ -1,0 +1,82 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNetworkportwifis
+ *
+ * @ORM\Table(name="glpi_networkportwifis", uniqueConstraints={@ORM\UniqueConstraint(name="networkports_id", columns={"networkports_id"})}, indexes={@ORM\Index(name="card", columns={"items_devicenetworkcards_id"}), @ORM\Index(name="essid", columns={"wifinetworks_id"}), @ORM\Index(name="version", columns={"version"}), @ORM\Index(name="mode", columns={"mode"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiNetworkportwifis
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="networkports_id", type="integer", nullable=false)
+     */
+    private $networkportsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_devicenetworkcards_id", type="integer", nullable=false)
+     */
+    private $itemsDevicenetworkcardsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="wifinetworks_id", type="integer", nullable=false)
+     */
+    private $wifinetworksId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="networkportwifis_id", type="integer", nullable=false)
+     */
+    private $networkportwifisId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="version", type="string", length=20, nullable=true)
+     */
+    private $version;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mode", type="string", length=20, nullable=true)
+     */
+    private $mode;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

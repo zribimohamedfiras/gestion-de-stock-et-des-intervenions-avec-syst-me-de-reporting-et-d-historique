@@ -1,0 +1,96 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiItemsDevicenetworkcards
+ *
+ * @ORM\Table(name="glpi_items_devicenetworkcards", indexes={@ORM\Index(name="computers_id", columns={"items_id"}), @ORM\Index(name="devicenetworkcards_id", columns={"devicenetworkcards_id"}), @ORM\Index(name="specificity", columns={"mac"}), @ORM\Index(name="is_deleted", columns={"is_deleted"}), @ORM\Index(name="is_dynamic", columns={"is_dynamic"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_recursive", columns={"is_recursive"}), @ORM\Index(name="serial", columns={"serial"}), @ORM\Index(name="busID", columns={"busID"}), @ORM\Index(name="item", columns={"itemtype", "items_id"})})
+ * @ORM\Entity
+ */
+class GlpiItemsDevicenetworkcards
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=255, nullable=true)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="devicenetworkcards_id", type="integer", nullable=false)
+     */
+    private $devicenetworkcardsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mac", type="string", length=255, nullable=true)
+     */
+    private $mac;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    private $isDeleted = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_dynamic", type="boolean", nullable=false)
+     */
+    private $isDynamic = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="serial", type="string", length=255, nullable=true)
+     */
+    private $serial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="busID", type="string", length=255, nullable=true)
+     */
+    private $busid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

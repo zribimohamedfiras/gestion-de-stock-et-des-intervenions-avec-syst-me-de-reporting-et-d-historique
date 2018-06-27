@@ -1,0 +1,384 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Demande Intervention{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/select/select2.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+    {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/switchery/switchery.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+{% block body %}
+
+
+    <div class="right_col" role="main" ng-app="showApp" ng-controller="mainController">
+        <div class="">
+
+
+
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Demande Intervention<small>Gestion Intervention</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <br />
+
+        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ path("demandeintervention") }}" >
+                              <div class="form-group">
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="hidden"  required="required" name="nbrintervenant" id="nbrintervenant" class="form-control col-md-7 col-xs-12 " value="{[{ nbr }]}" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="hidden"  required="required" name="nbrdiffusion" id="nbrdiffusion" class="form-control col-md-7 col-xs-12 " value="{[{ nbrdif }]}" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="hidden"  required="required" name="nbrticket" id="nbrticket" class="form-control col-md-7 col-xs-12 " value="{[{ nbrtick }]}" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="hidden"  required="required" name="nbrgroup" id="nbrgroup" class="form-control col-md-7 col-xs-12 " value="{[{ nbrgrp }]}" >
+                                    </div>
+                                </div>
+
+                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Numero de Ticket N° 1<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                       <select class="select2_single form-control" tabindex="-1" name="ticket1" required="true" >
+                                                 <option></option>
+                                                 {% for tic in ticket %}
+                                                    {% if tic.getStatus()!=5 %}
+                                                        {% if tic.getStatus()!=6 %}
+                                                             <option value="{{ tic.getId() }}">{{ tic.getId() }}</option>
+                                                        {% endif %}
+                                                    {% endif %}
+
+                                                 {% endfor %}
+                                       </select>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                        <a ng-click="ajouttick()"><i class="fa fa-plus-circle"></i> </a>
+                                    </div>
+                              </div>
+                              <br>
+                              <div ng-repeat=" t in rangero(nbrtick)">
+                                    <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Numero de Ticket N° {[{ t+1 }]}<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                       <select class="select2_single form-control" tabindex="-1" name="ticket{[{ t+1 }]}" required="true" >
+                                                 <option></option>
+                                                 {% for tic in ticket %}
+                                                    {% if tic.getStatus()!=5 %}
+                                                        {% if tic.getStatus()!=6 %}
+                                                             <option value="{{ tic.getId() }}">{{ tic.getId() }}</option>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                 {% endfor %}
+                                       </select>
+                                    </div>
+                                    </div>
+                              <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-5">
+                                        <a ng-click="minimtick()"><i class="fa fa-minus-circle"></i> </a>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                        <a ng-click="ajouttick()"><i class="fa fa-plus-circle"></i> </a>
+                                    </div>
+                                    <br>
+                                    <div class="ln_solid"></div>
+                              </div>
+
+<!-- demandeur wel station bech ne5edh'hom toul mel php mel table tickets w les tables associé leha !-->
+
+
+                               <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Date Debut<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="dated" data-inputmask="'mask': '99/99/2099'" required="required">
+                                        <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Date Fin<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="datef" data-inputmask="'mask': '99/99/2099'" required="required">
+                                        <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Heure Debut<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="heured" data-inputmask="'mask': '99:99'" required="required">
+                                        <span class="glyphicon glyphicon-dashboard form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Heure Fin<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control" name="heuref" data-inputmask="'mask': '99:99'" required="required">
+                                        <span class="glyphicon glyphicon-dashboard form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Type <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                       <select class="select2_single form-control" tabindex="-1" name="type" required="true">
+                                                 <option></option>
+                                                 <option value="Maintenance préventive">Maintenance préventive</option>
+                                                 <option value="Maintenance currative">Maintenance currative</option>
+                                       </select>
+                                    </div>
+                                </div>
+                                <!-- description feha el titre mta3 el ticket yet7at toul !-->
+
+
+                                <br>
+                                    <div class="ln_solid"></div>
+                               <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12 col-md-offset-3">Ajouter Intervenants</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                            <a ng-click="ajout()"><i class="fa fa-plus-circle"></i> </a>
+                                    </div>
+                              </div>
+                              <br>
+                              <div ng-repeat=" n in ranges()">
+                                    <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Intervenant n° {[{ n }]} <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <select class="select2_single form-control" tabindex="-1" name="intervenant{[{n}]}" required="true">
+                                                 <option></option>
+                                                 {% for inter in intervenant %}
+                                                 <option value="{{ inter.getUsername() }}">{{ inter.getPrenom() }} {{ inter.getNom() }}</option>
+                                                 {% endfor %}
+                                       </select>
+
+                                    </div>
+                              </div>
+                              <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-5">
+                                        <a ng-click="minim()"><i class="fa fa-minus-circle"></i> </a>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                        <a ng-click="ajout()"><i class="fa fa-plus-circle"></i> </a>
+                                    </div>
+                                    <br>
+                                    <div class="ln_solid"></div>
+                              </div>
+                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12 col-md-offset-3">Ajouter Diffusion</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                            <a ng-click="ajoutdif()"><i class="fa fa-plus-circle"></i> </a>
+                                    </div>
+                              </div>
+                              <div ng-repeat=" m in rangero(nbrdif)">
+                                                                  <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Diffusé à <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <select class="select2_single form-control" tabindex="-1" name="diffusion{[{m}]}" required="true">
+                                                 <option></option>
+
+                                                 {% for d in diffusion %}
+                                                 <option value="{{ d.getName() }}">{{ d.getName() }}</option>
+                                                 {% endfor %}
+                                       </select>
+
+                                    </div>
+                              </div>
+                              <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-5">
+                                        <a ng-click="minimdif()"><i class="fa fa-minus-circle"></i> </a>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                        <a ng-click="ajoutdif()"><i class="fa fa-plus-circle"></i> </a>
+                                    </div>
+                                    <br>
+                                    <div class="ln_solid"></div>
+
+                              </div>
+
+                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12 col-md-offset-3">Informer Groupe </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                            <a ng-click="ajoutgrp()"><i class="fa fa-plus-circle"></i> </a>
+                                    </div>
+                              </div>
+                              <div ng-repeat=" g in rangero(nbrgrp)">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Informer <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <select class="select2_single form-control" tabindex="-1" name="group{[{g}]}" required="true">
+                                                 <option></option>
+
+                                                 {% for gr in groupe %}
+                                                 <option value="{{ gr.getId() }}">{{ gr.getName() }}</option>
+                                                 {% endfor %}
+                                       </select>
+
+                                    </div>
+                              </div>
+                              <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-5">
+                                        <a ng-click="minimgrp()"><i class="fa fa-minus-circle"></i> </a>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                        <a ng-click="ajoutgrp()"><i class="fa fa-plus-circle"></i> </a>
+                                    </div>
+                                    <br>
+                                    <div class="ln_solid"></div>
+
+                              </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                         <a class="btn btn-default submit" href="{{ path('afficher_all_intervention') }}" >Retour</a>
+                                    </div>
+                                </div>
+
+
+        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+            {% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#birthday').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var showApp = angular.module('showApp', [])
+            .config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('{[{')
+                    .endSymbol('}]}');
+            })
+
+            .controller('mainController', function($scope) {
+
+
+
+                $scope.nbrgrp=0;
+                $scope.nbrtick=0;
+                $scope.nbrdif=0;
+                $scope.x={{ nb }}
+                if( $scope.x == 0)
+                {$scope.nbr=1;}
+                else
+                {
+                    $scope.nbr=$scope.x;
+                }
+
+                $scope.ajoutgrp= function() {
+                  $scope.nbrgrp= $scope.nbrgrp+1;
+                }
+
+                $scope.minimgrp= function() {
+                  $scope.nbrgrp= $scope.nbrgrp-1;
+                }
+
+
+                $scope.ajouttick= function() {
+                  $scope.nbrtick=$scope.nbrtick+1;
+                }
+                $scope.minimtick= function() {
+                  $scope.nbrtick=$scope.nbrtick-1;
+                }
+
+                $scope.ajoutdif= function() {
+                  $scope.nbrdif=$scope.nbrdif+1;
+                }
+                $scope.minimdif= function() {
+                  $scope.nbrdif=$scope.nbrdif-1;
+                }
+
+                $scope.ajout = function () {
+                    $scope.nbr=$scope.nbr+1;
+                }
+                $scope.minim = function () {
+                    $scope.nbr=$scope.nbr-1;
+                }
+                $scope.ranges = function(step) {
+                    step = step || 1;
+                    var input = [];
+                    for (var i = 1; i <= $scope.nbr-1; i += step) {
+                        input.push(i);
+                    }
+                    return input;
+                };
+                $scope.rangero = function(max,step) {
+                    step = step || 1;
+                    var input = [];
+                    for (var i = 1; i <= max; i += step) {
+                        input.push(i);
+                    }
+                    return input;
+                };
+
+            });
+    </script>
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/select/select2.full.js' output='js/select/select2.full.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $(document).ready(function() {
+            $(".select2_single").select2({
+                placeholder: "Select un parmit les options",
+                allowClear: true
+            });
+            $(".select2_group").select2({});
+            $(".select2_multiple").select2({
+                maximumSelectionLength: 4,
+                placeholder: "With Max Selection limit 4",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <!-- input mask -->
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/input_mask/jquery.inputmask.js' output='js/input_mask/jquery.inputmask.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <!-- input_mask -->
+    <script>
+        $(document).ready(function() {
+            $(":input").inputmask();
+        });
+    </script>
+    <!-- /input mask -->
+
+{% endblock %}

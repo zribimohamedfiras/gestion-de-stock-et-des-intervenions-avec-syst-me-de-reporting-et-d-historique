@@ -1,0 +1,249 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Demande Bon!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/select/select2.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+    {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/switchery/switchery.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+{% block body %}
+
+    <div class="right_col" role="main" ng-app="showApp" ng-controller="mainController">
+        <div class="">
+
+
+
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Demande Bon<small>Gestion Stock</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <br />
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ path("testbontest") }}" >
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nbarticle">nombre article souhaité <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="number"  required="required" name="nbarticle" id="nbarticle" class="form-control col-md-7 col-xs-12 " min="1" value="{[{ nbr }]}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name2">Numero de Serie 1
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="serie1" name="serie1" class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-12">
+                                            <a ng-click="ajout()"><i class="fa fa-plus-circle"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div ng-repeat=" n in ranges()">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name2">Numero de Serie {[{ n+1}]}
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" id="serie{[{n+1}]}" name="serie{[{n+1}]}" class="form-control col-md-7 col-xs-12">
+                                            </div>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                <a ng-click="minim()"><i class="fa fa-minus-circle"></i> </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <br><br><br>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Custom</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select class="select2_single form-control" tabindex="-1">
+                                            <option></option>
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI">Hawaii</option>
+                                            <option value="CA">California</option>
+                                            <option value="NV">Nevada</option>
+                                            <option value="OR">Oregon</option>
+                                            <option value="WA">Washington</option>
+                                            <option value="AZ">Arizona</option>
+                                            <option value="CO">Colorado</option>
+                                            <option value="ID">Idaho</option>
+                                            <option value="MT">Montana</option>
+                                            <option value="NE">Nebraska</option>
+                                            <option value="NM">New Mexico</option>
+                                            <option value="ND">North Dakota</option>
+                                            <option value="UT">Utah</option>
+                                            <option value="WY">Wyoming</option>
+                                            <option value="AR">Arkansas</option>
+                                            <option value="IL">Illinois</option>
+                                            <option value="IA">Iowa</option>
+                                            <option value="KS">Kansas</option>
+                                            <option value="KY">Kentucky</option>
+                                            <option value="LA">Louisiana</option>
+                                            <option value="MN">Minnesota</option>
+                                            <option value="MS">Mississippi</option>
+                                            <option value="MO">Missouri</option>
+                                            <option value="OK">Oklahoma</option>
+                                            <option value="SD">South Dakota</option>
+                                            <option value="TX">Texas</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Date Debut</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="dated" data-inputmask="'mask': '99/99/9999'" required="required">
+                                        <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Date Fin</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="datef" data-inputmask="'mask': '99/99/9999'" required="required">
+                                        <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Heure Debut</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="heured" data-inputmask="'mask': '99:99'" required="required">
+                                        <span class="glyphicon glyphicon-dashboard form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Heure Fin</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                        <input type="text" class="form-control" name="heuref" data-inputmask="'mask': '99:99'" required="required">
+                                        <span class="glyphicon glyphicon-dashboard form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <a class="btn btn-default submit" href="{{ path('afficherbon') }}" >Retour</a>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                            </center>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#birthday').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var showApp = angular.module('showApp', [])
+            .config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('{[{')
+                    .endSymbol('}]}');
+            })
+
+            .controller('mainController', function($scope) {
+
+
+                $scope.nbr=1;
+                $scope.ajout = function () {
+                    $scope.nbr=$scope.nbr+1;
+                }
+                $scope.minim = function () {
+                    $scope.nbr=$scope.nbr-1;
+                }
+                $scope.ranges = function(step) {
+                    step = step || 1;
+                    var input = [];
+                    for (var i = 1; i <= $scope.nbr-1; i += step) {
+                        input.push(i);
+                    }
+                    return input;
+                };
+
+            });
+
+    </script>
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/select/select2.full.js' output='js/select/select2.full.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $(document).ready(function() {
+            $(".select2_single").select2({
+                placeholder: "Select un parmit les options",
+                allowClear: true
+            });
+            $(".select2_group").select2({});
+            $(".select2_multiple").select2({
+                maximumSelectionLength: 4,
+                placeholder: "With Max Selection limit 4",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <!-- input mask -->
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/input_mask/jquery.inputmask.js' output='js/input_mask/jquery.inputmask.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <!-- input_mask -->
+    <script>
+        $(document).ready(function() {
+            $(":input").inputmask();
+        });
+    </script>
+    <!-- /input mask -->
+
+{% endblock %}

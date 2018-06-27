@@ -1,0 +1,227 @@
+{% extends "basegentela.html.twig" %}
+
+
+
+    {% block stylesheet %}
+        {{ parent() }}
+
+        {% stylesheets 'Bundles/app/css/styles.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/jquery.dataTables.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/buttons.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/fixedHeader.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/responsive.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/scroller.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+        {% stylesheets 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets 'https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+    {% endblock %}
+
+
+{% block body %}
+    <div class="right_col" role="main">
+        <div class="">
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Ncin</th>
+                        <th>Matricule</th>
+                        <th>Societe</th>
+                        <th>Role</th>
+                        <th>Modifier</th>
+                        <th>Delete</th>
+
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Ncin</th>
+                        <th>Matricule</th>
+                        <th>Societe</th>
+                        <th>Role</th>
+                        <th>Modifier</th>
+                        <th>Delete</th>
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for r in res %}
+                    <tr>
+
+                        <td name="username"> {{ r.getUsername }} </td>
+
+                        <td> {{ r.getEmail }} </td>
+                        <td>{{ r.getNom }}</td>
+
+                        <td>{{ r.getPrenom }}</td>
+                        <td>{{ r.getNcin }}</td>
+
+                        <td>{{ r.getMatricule }}</td>
+                        <td>{{ r.getSociete }}</td>
+                        <td>{{ r.getRole }}</td>
+                        <form action="{{ path('modifier_user') }}" method="post">
+                            <td>   <button type="submit" class="btn btn-default submit">Modifier</button></td></form>
+                        <form action="{{ path('delete_user') }}" method="post">
+                        <td>   <button type="submit" class="btn btn-default submit">Delete</button></td></form>
+                    </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+ {% block javascripts %}
+         {{ parent() }}
+            <!-- form wizard -->
+          {% javascripts '@AppBundle/Resources/public/gentelella/js/wizard/jquery.smartWizard.js'   %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+{% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jquery.dataTables.min.js' %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.bootstrap.js'  %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.buttons.min.js' %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.bootstrap.min.js' %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jszip.min.js'  %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/pdfmake.min.js'   %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.html5.min.js'  %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/vfs_fonts.js'   %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.print.min.js' %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.fixedHeader.min.js'  %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.keyTable.min.js'  %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.responsive.min.js'  %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/responsive.bootstrap.min.js' %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+             {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.scroller.min.js'  %}
+             <script src="{{ asset_url }}"></script>
+             {% endjavascripts %}
+
+
+             <script type="text/javascript">
+                 $(document).ready(function() {
+                     $('#example').DataTable();
+                 } );
+              TableManageButtons.init();
+           </script>
+
+       {% endblock %}
+
+
+
+
+
+
+

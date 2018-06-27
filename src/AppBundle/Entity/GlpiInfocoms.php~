@@ -1,0 +1,222 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiInfocoms
+ *
+ * @ORM\Table(name="glpi_infocoms", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"itemtype", "items_id"})}, indexes={@ORM\Index(name="buy_date", columns={"buy_date"}), @ORM\Index(name="alert", columns={"alert"}), @ORM\Index(name="budgets_id", columns={"budgets_id"}), @ORM\Index(name="suppliers_id", columns={"suppliers_id"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_recursive", columns={"is_recursive"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiInfocoms
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="buy_date", type="date", nullable=true)
+     */
+    private $buyDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="use_date", type="date", nullable=true)
+     */
+    private $useDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="warranty_duration", type="integer", nullable=false)
+     */
+    private $warrantyDuration = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="warranty_info", type="string", length=255, nullable=true)
+     */
+    private $warrantyInfo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="suppliers_id", type="integer", nullable=false)
+     */
+    private $suppliersId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_number", type="string", length=255, nullable=true)
+     */
+    private $orderNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="delivery_number", type="string", length=255, nullable=true)
+     */
+    private $deliveryNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="immo_number", type="string", length=255, nullable=true)
+     */
+    private $immoNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="decimal", precision=20, scale=4, nullable=false)
+     */
+    private $value = '0.0000';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="warranty_value", type="decimal", precision=20, scale=4, nullable=false)
+     */
+    private $warrantyValue = '0.0000';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sink_time", type="integer", nullable=false)
+     */
+    private $sinkTime = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sink_type", type="integer", nullable=false)
+     */
+    private $sinkType = '0';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="sink_coeff", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $sinkCoeff = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bill", type="string", length=255, nullable=true)
+     */
+    private $bill;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="budgets_id", type="integer", nullable=false)
+     */
+    private $budgetsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="alert", type="integer", nullable=false)
+     */
+    private $alert = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="order_date", type="date", nullable=true)
+     */
+    private $orderDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="delivery_date", type="date", nullable=true)
+     */
+    private $deliveryDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="inventory_date", type="date", nullable=true)
+     */
+    private $inventoryDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="warranty_date", type="date", nullable=true)
+     */
+    private $warrantyDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="decommission_date", type="datetime", nullable=true)
+     */
+    private $decommissionDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,96 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiRssfeeds
+ *
+ * @ORM\Table(name="glpi_rssfeeds", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="have_error", columns={"have_error"}), @ORM\Index(name="is_active", columns={"is_active"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiRssfeeds
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="text", length=65535, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="refresh_rate", type="integer", nullable=false)
+     */
+    private $refreshRate = '86400';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_items", type="integer", nullable=false)
+     */
+    private $maxItems = '20';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="have_error", type="boolean", nullable=false)
+     */
+    private $haveError = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

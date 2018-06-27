@@ -1,0 +1,124 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiComputervirtualmachines
+ *
+ * @ORM\Table(name="glpi_computervirtualmachines", indexes={@ORM\Index(name="computers_id", columns={"computers_id"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="virtualmachinestates_id", columns={"virtualmachinestates_id"}), @ORM\Index(name="virtualmachinesystems_id", columns={"virtualmachinesystems_id"}), @ORM\Index(name="vcpu", columns={"vcpu"}), @ORM\Index(name="ram", columns={"ram"}), @ORM\Index(name="is_deleted", columns={"is_deleted"}), @ORM\Index(name="is_dynamic", columns={"is_dynamic"}), @ORM\Index(name="uuid", columns={"uuid"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiComputervirtualmachines
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="computers_id", type="integer", nullable=false)
+     */
+    private $computersId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="virtualmachinestates_id", type="integer", nullable=false)
+     */
+    private $virtualmachinestatesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="virtualmachinesystems_id", type="integer", nullable=false)
+     */
+    private $virtualmachinesystemsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="virtualmachinetypes_id", type="integer", nullable=false)
+     */
+    private $virtualmachinetypesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uuid", type="string", length=255, nullable=false)
+     */
+    private $uuid = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="vcpu", type="integer", nullable=false)
+     */
+    private $vcpu = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ram", type="string", length=255, nullable=false)
+     */
+    private $ram = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    private $isDeleted = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_dynamic", type="boolean", nullable=false)
+     */
+    private $isDynamic = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

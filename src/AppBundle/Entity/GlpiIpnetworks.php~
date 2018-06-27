@@ -1,0 +1,222 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiIpnetworks
+ *
+ * @ORM\Table(name="glpi_ipnetworks", indexes={@ORM\Index(name="network_definition", columns={"entities_id", "address", "netmask"}), @ORM\Index(name="address", columns={"address_0", "address_1", "address_2", "address_3"}), @ORM\Index(name="netmask", columns={"netmask_0", "netmask_1", "netmask_2", "netmask_3"}), @ORM\Index(name="gateway", columns={"gateway_0", "gateway_1", "gateway_2", "gateway_3"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiIpnetworks
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ipnetworks_id", type="integer", nullable=false)
+     */
+    private $ipnetworksId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="completename", type="text", length=65535, nullable=true)
+     */
+    private $completename;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ancestors_cache", type="text", nullable=true)
+     */
+    private $ancestorsCache;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sons_cache", type="text", nullable=true)
+     */
+    private $sonsCache;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="addressable", type="boolean", nullable=false)
+     */
+    private $addressable = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="version", type="boolean", nullable=true)
+     */
+    private $version = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=40, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="address_0", type="integer", nullable=false)
+     */
+    private $address0 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="address_1", type="integer", nullable=false)
+     */
+    private $address1 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="address_2", type="integer", nullable=false)
+     */
+    private $address2 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="address_3", type="integer", nullable=false)
+     */
+    private $address3 = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="netmask", type="string", length=40, nullable=true)
+     */
+    private $netmask;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="netmask_0", type="integer", nullable=false)
+     */
+    private $netmask0 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="netmask_1", type="integer", nullable=false)
+     */
+    private $netmask1 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="netmask_2", type="integer", nullable=false)
+     */
+    private $netmask2 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="netmask_3", type="integer", nullable=false)
+     */
+    private $netmask3 = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gateway", type="string", length=40, nullable=true)
+     */
+    private $gateway;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="gateway_0", type="integer", nullable=false)
+     */
+    private $gateway0 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="gateway_1", type="integer", nullable=false)
+     */
+    private $gateway1 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="gateway_2", type="integer", nullable=false)
+     */
+    private $gateway2 = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="gateway_3", type="integer", nullable=false)
+     */
+    private $gateway3 = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

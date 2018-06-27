@@ -1,0 +1,250 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiTransfers
+ *
+ * @ORM\Table(name="glpi_transfers", indexes={@ORM\Index(name="date_mod", columns={"date_mod"})})
+ * @ORM\Entity
+ */
+class GlpiTransfers
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_ticket", type="integer", nullable=false)
+     */
+    private $keepTicket = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_networklink", type="integer", nullable=false)
+     */
+    private $keepNetworklink = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_reservation", type="integer", nullable=false)
+     */
+    private $keepReservation = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_history", type="integer", nullable=false)
+     */
+    private $keepHistory = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_device", type="integer", nullable=false)
+     */
+    private $keepDevice = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_infocom", type="integer", nullable=false)
+     */
+    private $keepInfocom = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_dc_monitor", type="integer", nullable=false)
+     */
+    private $keepDcMonitor = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_dc_monitor", type="integer", nullable=false)
+     */
+    private $cleanDcMonitor = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_dc_phone", type="integer", nullable=false)
+     */
+    private $keepDcPhone = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_dc_phone", type="integer", nullable=false)
+     */
+    private $cleanDcPhone = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_dc_peripheral", type="integer", nullable=false)
+     */
+    private $keepDcPeripheral = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_dc_peripheral", type="integer", nullable=false)
+     */
+    private $cleanDcPeripheral = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_dc_printer", type="integer", nullable=false)
+     */
+    private $keepDcPrinter = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_dc_printer", type="integer", nullable=false)
+     */
+    private $cleanDcPrinter = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_supplier", type="integer", nullable=false)
+     */
+    private $keepSupplier = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_supplier", type="integer", nullable=false)
+     */
+    private $cleanSupplier = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_contact", type="integer", nullable=false)
+     */
+    private $keepContact = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_contact", type="integer", nullable=false)
+     */
+    private $cleanContact = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_contract", type="integer", nullable=false)
+     */
+    private $keepContract = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_contract", type="integer", nullable=false)
+     */
+    private $cleanContract = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_software", type="integer", nullable=false)
+     */
+    private $keepSoftware = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_software", type="integer", nullable=false)
+     */
+    private $cleanSoftware = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_document", type="integer", nullable=false)
+     */
+    private $keepDocument = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_document", type="integer", nullable=false)
+     */
+    private $cleanDocument = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_cartridgeitem", type="integer", nullable=false)
+     */
+    private $keepCartridgeitem = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clean_cartridgeitem", type="integer", nullable=false)
+     */
+    private $cleanCartridgeitem = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_cartridge", type="integer", nullable=false)
+     */
+    private $keepCartridge = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_consumable", type="integer", nullable=false)
+     */
+    private $keepConsumable = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keep_disk", type="integer", nullable=false)
+     */
+    private $keepDisk = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

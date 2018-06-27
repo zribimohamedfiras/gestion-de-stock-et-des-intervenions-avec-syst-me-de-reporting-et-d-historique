@@ -1,0 +1,261 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Afficher Bon d'Interventions{% endblock %}
+
+
+    {% block stylesheet %}
+        {{ parent() }}
+
+        {% stylesheets 'Bundles/app/css/styles.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/jquery.dataTables.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/buttons.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/fixedHeader.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/responsive.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/scroller.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+        {% stylesheets 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets 'https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+    {% endblock %}
+
+
+{% block body %}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Afficher Interventions <small>Gestion Intervention</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+        <div class="clearfix"></div>
+        <br><br>
+
+        <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-3 ">
+            <a class="btn btn-default submit" href="{{ path('demandeintervention') }}" >Ajouter Intervention</a>
+
+        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 ">
+                        <a class="btn btn-default submit" href="{{ path('afficherbonhotel') }}" >Affihcer Bons Hotels
+                        </a>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                            <a class="btn btn-default submit" href="{{ path('afficherbonvol') }}" >Affihcer Bons Vols
+                            </a>
+                        </div>
+        <br><br><br><br>
+
+        <div class="row">
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+
+                    <tr>
+                    <th colspan="4"><center>N° Intervention</center></th>
+                    </tr>
+                    <tr>
+                    <th><center>Date Debut</center></th>
+                    <th><center>Heure Debut</center></th>
+                    <th><center>Date Fin</center></th>
+                    <th><center>Heure Fin</center></th>
+                    </tr>
+                    <tr>
+                    <th colspan="2"><center>Intervenant</center></th>
+                    <th><center>NCIN</center></th>
+                    <th><center>Société</center></th>
+                    </tr>
+                    <tr>
+                    <th colspan="2"><center>N° Ticket</center></th>
+                    <th colspan="2"><center>Station</center></th>
+                    </tr>
+
+
+
+                </thead>
+                <tbody>
+                {% set i=0 %}
+
+                {% for inter in intervention %}
+                    {% set i=i+1 %}
+
+                    <tr>
+                        <td colspan="4"><center><br><div class="ln_solid"></div><div class="ln_solid"></div><br>Intervention N° {{ inter.getIdIntervention() }}</center></td>
+                    </tr>
+                    <tr>
+                        <td><center>{{ inter.getDateDebut() }}</center></td>
+                        <td><center>{{ inter.getHeureDebut() }}</center></td>
+                        <td><center>{{ inter.getDateFin() }}</center></td>
+                        <td><center>{{ inter.getHeureFin() }}</center></td>
+                    </tr>
+                        {% for ba in intervenant[i] %}
+                            <tr>
+                        <td colspan="2"><center>{{ ba.getIdutilisateur().getPrenom() }} {{ ba.getIdutilisateur().getNom() }}</center></td>
+                        <td><center>{{ ba.getIdutilisateur().getNcin() }}</center></td>
+                        <td><center>{{ ba.getIdutilisateur().getSociete() }}</center></td>
+                            </tr>
+                        {% endfor %}
+                        {% for ba in ticket[i] %}
+                            <tr>
+                            <td colspan="2"><center>{{ ba.getTicket() }}</center></td>
+                            {% for tic in allticket %}
+                                {% if tic.getId() == ba.getTicket() %}
+                                    {% for stat in station %}
+                                        {% if tic.getLocationsId() == stat.getId() %}
+                                            <td colspan="2"><center>{{ stat.getName() }}</center></td>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    <tr><form action="{{ path('supprimerbonintervention') }}" method="post">
+                            <td colspan="4"> <center>  <input type="hidden" name="idbon" value="{{ inter.getIdIntervention() }}">
+                                    <a href="#1{{ inter.getIdIntervention() }}" role="button" class="btn btn-default submit" data-toggle="modal">Delete</a>
+                                    <div class="modal fade" id="1{{ inter.getIdIntervention() }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        ×
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        Delete
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Confirmation du suppression
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-default success">Delete</button>
+                                                    <input type="hidden" name="name" value="{{ inter.getIdIntervention() }}">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <br><div class="ln_solid"></div><div class="ln_solid"></div></center>
+                            </td></form></tr>
+
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div></div></div></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <!-- form wizard -->
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/wizard/jquery.smartWizard.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jquery.dataTables.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.bootstrap.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.buttons.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.bootstrap.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jszip.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/pdfmake.min.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.html5.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/vfs_fonts.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.print.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.fixedHeader.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.keyTable.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.responsive.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/responsive.bootstrap.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.scroller.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+
+
+     <script type="text/javascript">
+         $(document).ready(function() {
+             $('#example').DataTable();
+         } );
+         TableManageButtons.init();
+     </script>
+
+ {% endblock %}

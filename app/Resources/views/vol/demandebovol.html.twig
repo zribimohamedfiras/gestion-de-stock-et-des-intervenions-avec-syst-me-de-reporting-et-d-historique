@@ -1,0 +1,304 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Demande Bon Vol{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/select/select2.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+    {% stylesheets filter='cssrewrite' 'Bundles/app/gentelella/css/switchery/switchery.min.css'  %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+{% block body %}
+<div class="right_col" role="main" ng-app="showApp" ng-controller="mainController">
+    <div class="">
+
+
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Demande Bon Vol<small>Gestion Intervention</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ path("changeintervol") }}" >
+
+
+                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Numero d'Intervention<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                       <select class="select2_single form-control" onchange="this.form.submit()" tabindex="-1" name="interven" required="true" ng-model="intr" >
+                                                 <option></option>
+
+                                                 {% for int in intervention %}
+                                                 <option value="{{ int.getIdIntervention() }}">Intervention N° {{ int.getIdIntervention() }}</option>
+                                                 {% endfor %}
+                                       </select>
+                                    </div>
+                              </div>
+                              </form>
+
+                                                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ path("choisirvol") }}" >
+
+                        <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">N° de Vol <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <select onchange="this.form.submit()" class="select2_single form-control" tabindex="-1" name="vol" required="true">
+                                                 <option></option>
+                                                 {% for vol in vol %}
+                                                 <option   value={{ vol.getIdvol()}}>{{ vol.getIdvol() }}</option>
+                                                 {% endfor %}
+                                       </select>
+
+                                    </div>
+                              </div>
+                                </form>
+
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" >
+                            <input type="hidden" name="intervention" required="required" value="{[{intr}]}">
+
+                             <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Demandeur<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                       <select class="select2_single form-control" tabindex="-1" name="demandeur" required="true" ng-model="demand">
+                                                 <option></option>
+                                                 {% for dem in demandeur %}
+                                                 <option value="{{ dem.getUsername() }}">{{ dem.getPrenom() }} {{ dem.getNom() }}</option>
+                                                 {% endfor %}
+                                       </select>
+                                    </div>
+                              </div>
+
+
+
+
+
+
+
+
+
+                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Lieu Depart Vol<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="LieuDepart"   required="required">
+                                        <span class="fa fa-plane  form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+
+                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Date Depart Vol<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="DateDepart" data-inputmask="'mask': '99/99/2099'" required="required">
+                                        <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+
+                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Heure Depart Vol<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="HeureDepart" data-inputmask="'mask': '99:99'" required="required">
+                                        <span class="fa fa-clock-o form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+
+                               <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Lieu Arrive Vol<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="LieuArrive"   required="required">
+                                        <span class="fa fa-plane  form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+
+                                        <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Date Arrive Vol<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="DateArrive" data-inputmask="'mask': '99/99/2099'" required="required">
+                                        <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Heure Arrive Vol<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-9">
+                                        <input type="text" class="form-control" name="HeureArrive" data-inputmask="'mask': '99:99'" required="required">
+                                        <span class="fa fa-clock-o form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+
+
+                                     <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Diffusion <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <select class="select2_single form-control" tabindex="-1" name="diffusion" required="true">
+                                                 <option></option>
+                                                 {% for dif in diffusion %}
+                                                 <option value="{{ dif.getFax() }}"> {{ dif.getName() }}  : {{ dif.getFax() }} </option>
+                                                 {% endfor %}
+                                       </select>
+
+                                    </div>
+                                    </div>
+
+
+
+
+
+                              <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Choisir Station <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <select class="select2_single form-control" tabindex="-1" name="station" required="true">
+                                                 <option></option>
+                                                 {% for stat in station %}
+                                                 <option  value="{{ stat.getName() }}">{{ stat.getName() }}</option>
+                                                 {% endfor %}
+                                       </select>
+
+                                    </div>
+                              </div>
+
+
+
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <a class="btn btn-default submit" href="{{ path('afficherbonvol') }}" >Retour</a>
+                                         </div>
+                                </div>
+
+
+
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        {% block javascripts %}
+        {{ parent() }}
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#birthday').daterangepicker({
+                    singleDatePicker: true,
+                    calender_style: "picker_4"
+                }, function(start, end, label) {
+                    console.log(start.toISOString(), end.toISOString(), label);
+                });
+            });
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script>
+        var showApp = angular.module('showApp', [])
+            .config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('{[{')
+                    .endSymbol('}]}');
+            })
+
+            .controller('mainController', function($scope) {
+                $scope.demand='';
+                $scope.nbr=0;
+                $scope.myFunc = function() {
+                    $scope.interv= new Array();
+                    $scope.nbr=0;
+
+
+                    {% for u in users %}
+                    if ($scope.demand=={{ u.getName() }})
+                        {
+                            {% for tu in ticketusers %}
+                                if ({{ u.getId() }}=={{ tu.getUsersId() }})
+                                    {
+                                        if (2=={{ tu.getType() }})
+                                            {
+                                                {% for inter in interticket %}
+                                                    if ({{ inter.getTicket() }}=={{ tu.getTicketsId() }})
+                                                        {
+                                                            $scope.nbr=$scope.nbr+1;
+                                                            $scope.interv[$scope.nbr]={{ inter.getIdIntervention().getIdIntervention() }};
+                                                        }
+
+                                                {% endfor %}
+
+                                             }
+                                    }
+
+
+                            {% endfor %}
+                        }
+
+
+                    {% endfor %}
+                };
+                $scope.ranges = function(step) {
+                    step = step || 1;
+                    var input = [];
+                    for (var i = 1; i <= $scope.nbr; i += step) {
+                        input.push(i);
+                    }
+                    return input;
+                };
+
+
+           });
+    </script>
+        {% javascripts '@AppBundle/Resources/public/gentelella/js/select/select2.full.js' output='js/select/select2.full.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $(document).ready(function() {
+            $(".select2_single").select2({
+                placeholder: "Select un parmit les options",
+                allowClear: true
+            });
+            $(".select2_group").select2({});
+            $(".select2_multiple").select2({
+                maximumSelectionLength: 4,
+                placeholder: "With Max Selection limit 4",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <!-- input mask -->
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/input_mask/jquery.inputmask.js' output='js/input_mask/jquery.inputmask.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <!-- input_mask -->
+    <script>
+        $(document).ready(function() {
+            $(":input").inputmask();
+        });
+    </script>
+    <!-- /input mask -->
+
+{% endblock %}

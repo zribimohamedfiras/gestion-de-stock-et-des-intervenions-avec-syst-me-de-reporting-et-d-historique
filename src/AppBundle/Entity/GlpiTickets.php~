@@ -1,0 +1,271 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiTickets
+ *
+ * @ORM\Table(name="glpi_tickets", indexes={@ORM\Index(name="date", columns={"date"}), @ORM\Index(name="closedate", columns={"closedate"}), @ORM\Index(name="status", columns={"status"}), @ORM\Index(name="priority", columns={"priority"}), @ORM\Index(name="request_type", columns={"requesttypes_id"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="users_id_recipient", columns={"users_id_recipient"}), @ORM\Index(name="solvedate", columns={"solvedate"}), @ORM\Index(name="urgency", columns={"urgency"}), @ORM\Index(name="impact", columns={"impact"}), @ORM\Index(name="global_validation", columns={"global_validation"}), @ORM\Index(name="slts_tto_id", columns={"slts_tto_id"}), @ORM\Index(name="slts_ttr_id", columns={"slts_ttr_id"}), @ORM\Index(name="due_date", columns={"due_date"}), @ORM\Index(name="time_to_own", columns={"time_to_own"}), @ORM\Index(name="users_id_lastupdater", columns={"users_id_lastupdater"}), @ORM\Index(name="type", columns={"type"}), @ORM\Index(name="solutiontypes_id", columns={"solutiontypes_id"}), @ORM\Index(name="itilcategories_id", columns={"itilcategories_id"}), @ORM\Index(name="is_deleted", columns={"is_deleted"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="locations_id", columns={"locations_id"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiTickets
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="closedate", type="datetime", nullable=true)
+     */
+    private $closedate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="solvedate", type="datetime", nullable=true)
+     */
+    private $solvedate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id_lastupdater", type="integer", nullable=false)
+     */
+    private $usersIdLastupdater = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=false)
+     */
+    private $status = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id_recipient", type="integer", nullable=false)
+     */
+    private $usersIdRecipient = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="requesttypes_id", type="integer", nullable=false)
+     */
+    private $requesttypesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="urgency", type="integer", nullable=false)
+     */
+    private $urgency = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="impact", type="integer", nullable=false)
+     */
+    private $impact = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="priority", type="integer", nullable=false)
+     */
+    private $priority = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="itilcategories_id", type="integer", nullable=false)
+     */
+    private $itilcategoriesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="solutiontypes_id", type="integer", nullable=false)
+     */
+    private $solutiontypesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="solution", type="text", nullable=true)
+     */
+    private $solution;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="global_validation", type="integer", nullable=false)
+     */
+    private $globalValidation = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="slts_tto_id", type="integer", nullable=false)
+     */
+    private $sltsTtoId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="slts_ttr_id", type="integer", nullable=false)
+     */
+    private $sltsTtrId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ttr_slalevels_id", type="integer", nullable=false)
+     */
+    private $ttrSlalevelsId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="due_date", type="datetime", nullable=true)
+     */
+    private $dueDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_to_own", type="datetime", nullable=true)
+     */
+    private $timeToOwn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin_waiting_date", type="datetime", nullable=true)
+     */
+    private $beginWaitingDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sla_waiting_duration", type="integer", nullable=false)
+     */
+    private $slaWaitingDuration = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="waiting_duration", type="integer", nullable=false)
+     */
+    private $waitingDuration = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="close_delay_stat", type="integer", nullable=false)
+     */
+    private $closeDelayStat = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="solve_delay_stat", type="integer", nullable=false)
+     */
+    private $solveDelayStat = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="takeintoaccount_delay_stat", type="integer", nullable=false)
+     */
+    private $takeintoaccountDelayStat = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="actiontime", type="integer", nullable=false)
+     */
+    private $actiontime = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    private $isDeleted = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="locations_id", type="integer", nullable=false)
+     */
+    private $locationsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="validation_percent", type="integer", nullable=false)
+     */
+    private $validationPercent = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,40 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiRssfeedsUsers
+ *
+ * @ORM\Table(name="glpi_rssfeeds_users", indexes={@ORM\Index(name="rssfeeds_id", columns={"rssfeeds_id"}), @ORM\Index(name="users_id", columns={"users_id"})})
+ * @ORM\Entity
+ */
+class GlpiRssfeedsUsers
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rssfeeds_id", type="integer", nullable=false)
+     */
+    private $rssfeedsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

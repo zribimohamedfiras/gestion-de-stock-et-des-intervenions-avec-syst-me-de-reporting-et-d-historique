@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiDisplaypreferences
+ *
+ * @ORM\Table(name="glpi_displaypreferences", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"users_id", "itemtype", "num"})}, indexes={@ORM\Index(name="rank", columns={"rank"}), @ORM\Index(name="num", columns={"num"}), @ORM\Index(name="itemtype", columns={"itemtype"})})
+ * @ORM\Entity
+ */
+class GlpiDisplaypreferences
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="num", type="integer", nullable=false)
+     */
+    private $num = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rank", type="integer", nullable=false)
+     */
+    private $rank = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

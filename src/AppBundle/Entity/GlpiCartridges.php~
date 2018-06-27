@@ -1,0 +1,89 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiCartridges
+ *
+ * @ORM\Table(name="glpi_cartridges", indexes={@ORM\Index(name="cartridgeitems_id", columns={"cartridgeitems_id"}), @ORM\Index(name="printers_id", columns={"printers_id"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiCartridges
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cartridgeitems_id", type="integer", nullable=false)
+     */
+    private $cartridgeitemsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="printers_id", type="integer", nullable=false)
+     */
+    private $printersId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_in", type="date", nullable=true)
+     */
+    private $dateIn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_use", type="date", nullable=true)
+     */
+    private $dateUse;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_out", type="date", nullable=true)
+     */
+    private $dateOut;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pages", type="integer", nullable=false)
+     */
+    private $pages = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

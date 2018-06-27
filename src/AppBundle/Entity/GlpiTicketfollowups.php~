@@ -1,0 +1,75 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiTicketfollowups
+ *
+ * @ORM\Table(name="glpi_ticketfollowups", indexes={@ORM\Index(name="date", columns={"date"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="tickets_id", columns={"tickets_id"}), @ORM\Index(name="is_private", columns={"is_private"}), @ORM\Index(name="requesttypes_id", columns={"requesttypes_id"})})
+ * @ORM\Entity
+ */
+class GlpiTicketfollowups
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickets_id", type="integer", nullable=false)
+     */
+    private $ticketsId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_private", type="boolean", nullable=false)
+     */
+    private $isPrivate = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="requesttypes_id", type="integer", nullable=false)
+     */
+    private $requesttypesId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

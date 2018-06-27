@@ -1,0 +1,68 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiTicketsatisfactions
+ *
+ * @ORM\Table(name="glpi_ticketsatisfactions", uniqueConstraints={@ORM\UniqueConstraint(name="tickets_id", columns={"tickets_id"})})
+ * @ORM\Entity
+ */
+class GlpiTicketsatisfactions
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickets_id", type="integer", nullable=false)
+     */
+    private $ticketsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_begin", type="datetime", nullable=true)
+     */
+    private $dateBegin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_answered", type="datetime", nullable=true)
+     */
+    private $dateAnswered;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="satisfaction", type="integer", nullable=true)
+     */
+    private $satisfaction;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

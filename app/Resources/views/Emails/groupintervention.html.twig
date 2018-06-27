@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <p> Bonjours ,<br>Nous vous informer qu'il y a une intervention qui sera du {{ dated }} jusqu'a {{ datef }} aux sein de(s) Station(s) suivant:<br>
+        <ul>
+            {% for stat in station %}
+            <li> {{ stat }} </li>
+            {% endfor %}
+        </ul>
+    Cordialement </p>
+{% endblock %}

@@ -1,0 +1,4 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1> votre nom est inscrit dans une bon d{% if(typebon=="entree") %}'{% else %}e{% endif %} {{ typebon }} N° {{ num }} </h1>
+{% endblock %}

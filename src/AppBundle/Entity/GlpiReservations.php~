@@ -1,0 +1,68 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiReservations
+ *
+ * @ORM\Table(name="glpi_reservations", indexes={@ORM\Index(name="begin", columns={"begin"}), @ORM\Index(name="end", columns={"end"}), @ORM\Index(name="reservationitems_id", columns={"reservationitems_id"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="resagroup", columns={"reservationitems_id", "group"})})
+ * @ORM\Entity
+ */
+class GlpiReservations
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reservationitems_id", type="integer", nullable=false)
+     */
+    private $reservationitemsId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin", type="datetime", nullable=true)
+     */
+    private $begin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end", type="datetime", nullable=true)
+     */
+    private $end;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="group", type="integer", nullable=false)
+     */
+    private $group = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

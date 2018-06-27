@@ -1,0 +1,149 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Afficher Statistique Globale{% endblock %}
+{% block body %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/datepicker/css/bootstrap-datepicker.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/datepicker/css/bootstrap-datepicker.standalone.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/datepicker/css/bootstrap-datepicker3.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/datepicker/css/bootstrap-datepicker3.standalone.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% endblock %}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    Consulter Statistique Globale
+                    <small>
+                        Gestion Roporting
+                    </small>
+                </h3>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Intervention <small>par marge de date </small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="echart_line" style="height:450px;"></div>
+
+                        <div class="span5 col-md-6 col-md-offset-8">
+                            <form method="POST" action="{{ path("confirmtestali") }}">
+                            <div class="span5 col-md-3" id="sandbox-container">
+                                <input type="text" class="form-control" placeholder="Date Début" name="debut" required="required">
+                            </div>
+
+                            <div class="span5 col-md-3" id="sandbox-container">
+                                <input type="text" class="form-control" placeholder="Date Fin" name="fin" required="required">
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Filtrer">
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div></div></div>
+    </div>
+</div>
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <!-- echart -->
+
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/echart/echarts-all.js' output='js/echart/echarts-all.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/echart/green.js' output='js/echart/green.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     <script>
+         var myChart = echarts.init(document.getElementById('echart_line'), theme);
+         myChart.setOption({
+             title: {
+                 text: 'Intervention par marge de date',
+                 subtext: 'Intervention'
+             },
+             tooltip: {
+                 trigger: 'axis'
+             },
+             legend: {
+                 data: ['Intervention']
+             },
+             series: [{
+                 name: 'Intervention',
+                 type: 'line',
+                 smooth: true,
+                 itemStyle: {
+                     normal: {
+                         areaStyle: {
+                             type: 'default'
+                         }
+                     }
+                 },
+                 data: [{% for c in count %}{{ c }},{% endfor %}]
+             }],
+             toolbox: {
+                 show: true,
+                 feature: {
+                     magicType: {
+                         show: true,
+                         type: ['line', 'bar', 'stack', 'tiled']
+                     },
+                     restore: {
+                         show: true
+                     },
+                     saveAsImage: {
+                         show: true
+                     }
+                 }
+             },
+             calculable: true,
+             xAxis: [{
+                 type: 'category',
+                 boundaryGap: false,
+                 data: [{% for dt in datee %}'{{ dt }}',{% endfor %}]
+             }],
+             yAxis: [{
+                 type: 'value'
+             }]
+         });
+     </script>
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/gauge/jquery-ui.js' output='js/gauge/jquery-ui.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+    {% javascripts '@AppBundle/Resources/public/datepicker/js/bootstrap-datepicker.js'  output='js/bootstrap-datepicker.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+
+     <script>
+
+         $('#sandbox-container input').datepicker({
+             format: 'dd/mm/yyyy'
+         });
+
+     </script>
+
+{% endblock %}

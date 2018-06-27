@@ -1,0 +1,124 @@
+{% extends "base.html.twig" %}
+{% block title %}Login!{% endblock %}
+{% block body %}
+  <div class="">
+    <a class="hiddenanchor" id="toregister"></a>
+    <a class="hiddenanchor" id="tologin"></a>
+    <a class="hiddenanchor" id="tocode"></a>
+
+
+    <div id="wrapper">
+
+      <div id="login" class="animate form">
+        <section class="login_content">
+          <form action="{{ path('login') }}" method="post">
+
+            <h1>Login Form</h1>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}">
+            <div>
+              <div ng-app="showApp" ng-controller="mainController" >
+                <div ng-show="isEven()" style="color: #ff243b">{[{ msg }]}</div>
+              </div>
+                {% if error %}
+                  <div class="alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+              <input type="text" class="form-control" id="username" name="_username" placeholder="Username" required="" />
+            </div>
+            <div>
+              <input type="password" class="form-control" name="_password" id="password" placeholder="Password" required="" />
+            </div>
+            <div>
+              <button type="submit" class="btn btn-default submit">login</button>
+              <a href="#toregister" class="to_register">Lost your password?</a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="separator">
+
+
+              <div class="clearfix"></div>
+              <br />
+              <div>
+                <h1><i class="fa fa-group" style="font-size: 26px;"></i> STEG!</h1>
+
+                <p>©2017 Direction de la Production et du Transport  Gaz Privacy and Terms</p>
+              </div>
+            </div>
+          </form>
+          <!-- form -->
+        </section>
+        <!-- content -->
+      </div>
+      <div id="register" class="animate form">
+        <section class="login_content">
+          <form action="{{ path('pass_oubli') }}" method="post">
+            <h1>Lost your password</h1>
+
+            <div>
+              <input type="text" class="form-control" placeholder="Username" name="username" id="username" required="" />
+            </div>
+            <div>
+              <input type="email" class="form-control" placeholder="Email" name="email" id="email" required=""/>
+            </div>
+            <div>
+            <button type="submit" class="btn btn-default submit">code mail</button>
+            </div>
+          </form>
+
+
+            <div class="clearfix"></div>
+            <div class="separator">
+
+              <p class="change_link">Already a member ?
+                <a href="#tologin" class="to_register"> Log in </a>
+              </p>
+              <div class="clearfix"></div>
+              <br />
+              <div>
+                <h1><i class="fa fa-group" style="font-size: 26px;"></i> STEG!</h1>
+
+                <p>©2017 Direction de la Production et du Transport  Gaz Privacy and Terms</p>
+              </div>
+            </div>
+          </form>
+          <!-- form -->
+        </section>
+        <!-- content -->
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script>
+      var showApp = angular.module('showApp', [])
+          .config(function ($interpolateProvider) {
+              $interpolateProvider.startSymbol('{[{')
+                  .endSymbol('}]}');
+          })
+
+          .controller('mainController', function($scope) {
+
+
+              $scope.msg = 'Invalid Information';
+
+
+              $scope.isEven = function() {
+                  $scope.x={{ msg }};
+                  if ($scope.x==1 )
+                      return true;
+                  else
+                      return false;
+
+              };
+
+          });
+
+  </script>
+{% endblock %}

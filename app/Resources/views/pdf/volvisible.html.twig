@@ -1,0 +1,132 @@
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pdf Bon vol</title>
+
+
+
+    <style>
+
+        img {
+            display: block;
+            margin: auto;
+            width: 50%;
+        }
+
+
+
+    </style>
+
+
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+
+
+
+</head>
+<body style="font-size: 15pt">
+
+
+
+<img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Logo_Societe_tunisienne_electricite_gaz.svg/1280px-Logo_Societe_tunisienne_electricite_gaz.svg.png">
+
+
+
+<br>
+<center><h1 align="center">FAX</h1></center><br><br><br><br>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-7  " ><u><b>Expéditeur :</b> DPTG/Dept. Mouvement Gaz</u></div>
+    <div class="col-md-3 col-sm-3 col-xs-5 " ><u><b>Destinataire :</b> Station {{ station }}</u></div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-7  " ><u><b>De la part de :</b> Hatem Laâdhari </u></div>
+    <div class="col-md-3 col-sm-3 col-xs-5" ><u><b>A l'attention de :</b> Mr le Chef de Station</u></div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-3 " ><u><b>Réf : </b></u></div>
+    <div class="col-md-3 col-sm-3 col-xs-4 " ><u><b>Date : </b></u></div>
+    <div class="col-md-3 col-sm-3 col-xs-5" ><u> {{ station }} </u></div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-7" ><u><b>Nombre de Pages :</b> 01 </u></div>
+    <div class="col-md-3 col-sm-3 col-xs-5" ><u><b>N° de Fax :</b> {{ diffusion }} </u></div>
+</div>
+<br><br><br>
+<p>OBJET : <span style="text-decoration: underline;">Demande de réservation de vol</span> </p><br><br>
+
+
+
+
+<p>Nous vous prions de réserver un vol pour la station {{ station }} du {{ DateDepart }} au {{ DateArrive }}
+    pour les agents suivants :</p>
+
+<table  class="table table-bordered" style="font-size: 15pt">
+    <thead>
+    <tr>
+        <th><center>Nom</center></th>
+        <th><center>Prénom</center></th>
+
+        <th><center>Matricule</center></th>
+        <th><center>Cin</center></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td><center>  {{ demandeur.getNom() }} </center></td>
+        <td><center>  {{ demandeur.getPrenom() }} </center></td>
+
+        <td><center>  {{ demandeur.getNcin() }} </center></td>
+        <td><center>  {{ demandeur.getMatricule()  }} </center></td>
+
+    </tr>
+
+    {% for inter in intervenant %}
+        <tr >
+            <td><center> {{ inter.getIdutilisateur().getNom() }} </center></td>
+            <td><center>  {{ inter.getIdutilisateur().getPrenom() }} </center></td>
+
+
+            <td><center> {{ inter.getIdutilisateur().getNcin() }} </center></td>
+
+            <td><center> {{ inter.getIdutilisateur().getMatricule() }} </center></td>
+        </tr>
+    {% endfor %}
+    {% for su in supp %}
+    {% for user in users %}
+        {% if su == user.getUsername() %}
+            <tr >
+                <td><center>{{ user.getNom() }}</center></td>
+                <td><center>{{ user.getPrenom() }}</center></td>
+
+                <td><center>{{ user.getNcin() }}</center></td>
+                <td><center>{{ user.getMatricule()  }}</center></td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+    {% endfor %}<br> <br>
+
+
+
+    </tbody>
+</table>
+<p align="left">Et ce pour intervenir sur le système SCADA.</p> <br>
+
+
+
+<p align="right">LE DIRECTEUR DE L’EXPLOITATION GAZ</p> <br>
+
+
+
+
+<p align="right">Abdelmajid SAHBANI</p>
+
+
+</body>

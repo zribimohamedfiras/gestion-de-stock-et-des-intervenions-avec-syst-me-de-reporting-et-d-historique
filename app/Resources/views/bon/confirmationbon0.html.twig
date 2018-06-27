@@ -1,0 +1,315 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Demande Bon!{% endblock %}
+{% block body %}
+
+    <div class="right_col" role="main" ng-app="showApp" ng-controller="mainController">
+        <div class="">
+
+
+
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Confirmation Bon<small>Gestion Stock</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <br />
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ path("confirmationbon") }}" >
+
+
+                                <div class="form-group">
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="hidden"  required="required" name="nbrarticle" id="nbrarticle" class="form-control col-md-7 col-xs-12 " value="{[{ nbr }]}" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Demandeur <span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="select2_single form-control" tabindex="-1" name="demandeur" required="true">
+                                                <option></option>
+                                                {% for t in users %}
+                                                    <option value="{{ t.getUsername() }}">{{ t.getPrenom() }} {{ t.getNom() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Magasinier <span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="select2_single form-control" tabindex="-1" name="magasinier" required="true">
+                                                <option></option>
+                                                {% for t in users %}
+                                                    <option value="{{ t.getUsername() }}">{{ t.getPrenom() }} {{ t.getNom() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Signataire <span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="select2_single form-control" tabindex="-1" name="signataire" required="true">
+                                                <option></option>
+                                                {% for t in users %}
+                                                    <option value="{{ t.getUsername() }}">{{ t.getPrenom() }} {{ t.getNom() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Type Bon <span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="select2_single form-control" tabindex="-1" name="type" required="true" >
+                                                <option></option>
+
+                                                <option value="entree">entrée</option>
+                                                <option value="sortie">sortie</option>
+                                                <option value="retour">retour</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div style="color: #ff243b" >
+                                    {{ msg }}
+                                </div>
+
+                                <div class="ln_solid"></div><br>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">article <span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="select2_single form-control" tabindex="-1" name="article1" required="true" ng-model="des1">
+                                                <option></option>
+                                                {% for art in article %}
+                                                    <option value="{{ art.getDesignation() }}">{{ art.getDesignation() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantite">Quantité <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="number" id="quantite1" name="quantite1" required="required" class="form-control col-md-7 col-xs-12" min="1" ng-model="qte">
+                                    </div>
+                                </div>
+
+
+                                <div ng-repeat=" n in rangess()">
+                                    {% set des %}{[{ des1 }]}{% endset %}
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="station">Numero Serie {[{n}]}
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="select2_single form-control" tabindex="-1" name="serie1.{[{n}]}" required="true">
+                                                <option></option>
+                                                {% for se in seri %}
+                                                    {% if (se.getIdArticle().getDesignation()== des ) %}
+
+                                                        <option value="{{ se.getName() }}">{{ se.getName() }}</option>
+
+                                                    {% endif %}
+
+                                                    <span ng-if="test({{ se.getIdArticle().getDesignation() }},{{ des }})">
+                                                        <option value="{{ se.getName() }}">{{ se.getName() }}</option>
+                                                    </span>
+
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="station">Station <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="select2_single form-control" tabindex="-1" name="station1" required="true">
+                                            <option></option>
+                                            {% for st in stat %}
+                                                <option value="{{ st.getName() }}">{{ st.getName() }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-6">
+                                    <a ng-click="ajout()"><i class="fa fa-plus-circle"></i> </a>
+
+                                </div>
+                                <br>
+                                <div class="ln_solid"></div><br>
+
+                                <div ng-repeat=" r in ranges()">
+
+
+
+                                    <div class="form-group">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">article <span class="required">*</span></label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select class="select2_single form-control" tabindex="-1" name="article{[{ r+1 }]}" required="true">
+                                                        <option></option>
+                                                        {% for art in article %}
+                                                            <option value="{{ art.getDesignation() }}">{{ art.getDesignation() }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantite">Quantité <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="number" id="quantite{[{ r+1 }]}" name="quantite{[{ r+1 }]}" required="required" class="form-control col-md-7 col-xs-12" min="1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="station">Station <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="select2_single form-control" tabindex="-1" name="station{[{ r+1 }]}" required="true">
+                                                <option></option>
+                                                {% for st in stat %}
+                                                    <option value="{{ st.getName() }}">{{ st.getName() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                    </div>
+                                    </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-6">
+                                    <a ng-click="minim()"><i class="fa fa-minus-circle"></i> </a>
+
+                                </div>
+                                    <br>
+                                    <div class="ln_solid"></div><br>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5 col-sm-5 col-xs-12 col-md-offset-5">
+                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <a class="btn btn-default submit" href="{{ path('afficherbon') }}" >Retour</a>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <a href="{{ path('ajoutarticle') }}" class="btn btn-dark">Ajouter Nouveau article</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                            </center>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#birthday').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var showApp = angular.module('showApp', [])
+            .config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('{[{')
+                    .endSymbol('}]}');
+            })
+
+            .controller('mainController', function($scope) {
+                $scope.x={{ nbr }}
+                $scope
+                if( $scope.x == 0)
+                {$scope.nbr=1;}
+                else
+                {
+                    $scope.nbr=$scope.x;
+                }
+
+
+                $scope.ajout = function () {
+                    $scope.nbr=$scope.nbr+1;
+                }
+                $scope.minim = function () {
+                    $scope.nbr=$scope.nbr-1;
+                }
+                $scope.ranges = function(step) {
+                    step = step || 1;
+                    var input = [];
+                    for (var i = 1; i <= $scope.nbr-1; i += step) {
+                        input.push(i);
+                    }
+                    return input;
+                };
+                $scope.rangess = function(step) {
+                    step = step || 1;
+                    var input = [];
+                    for (var i = 1; i <= $scope.qte; i += step) {
+                        input.push(i);
+                    }
+                    return input;
+                };
+                $scope.test = function(x,y) {
+                    if (x==y)
+                    {
+                        $scope.res=true;
+                    }
+
+                    else
+                    {
+                        $scope.res=false
+                    }
+
+
+                }
+
+            });
+
+    </script>
+
+
+{% endblock %}

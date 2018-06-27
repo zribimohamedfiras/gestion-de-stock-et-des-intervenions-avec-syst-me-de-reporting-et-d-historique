@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiPlanningrecalls
+ *
+ * @ORM\Table(name="glpi_planningrecalls", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"itemtype", "items_id", "users_id"})}, indexes={@ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="before_time", columns={"before_time"}), @ORM\Index(name="when", columns={"when"})})
+ * @ORM\Entity
+ */
+class GlpiPlanningrecalls
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="before_time", type="integer", nullable=false)
+     */
+    private $beforeTime = '-10';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="when", type="datetime", nullable=true)
+     */
+    private $when;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

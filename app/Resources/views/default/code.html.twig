@@ -1,0 +1,92 @@
+{% extends "base.html.twig" %}
+{% block title %}Confirmation code!{% endblock %}
+{% block body %}
+
+    <div id="wrapper">
+        <div  class="animate form">
+            <section class="login_content" ng-app="showApp" ng-controller="mainController">
+
+                <form name="f" action="{{ path('confiramtioncode') }}" method="post">
+                    <h1>Confirmation Code</h1>
+                    <div>
+                        <input type="number" class="form-control" placeholder="code" name="code" id="code" min="1000" max="9999"  ng-model="code" required="" />
+                    </div>
+                    <div ng-show="isEven(code)">
+                        <div>
+                            <input ng-model="Password" ng-pattern="verif" ng-minlength="6" ng-maxlength="20" type="password" class="form-control" placeholder="Saisir Nouveau Password" name="pass" id="pass" required=""/>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p  style="color: #ff0000;margin-left: -0.5em;" ng-show="f.pass.$invalid && !f.pass.$pristine" class="help-block">You psw is required.</p><br>
+                                    <span style="color: #ff0000;margin-left: -0.5em;" class="error" ng-show="f.$error.pass">invalide !</span>
+
+                                </div>
+                                <div class="col-sm-4">
+                                    <p style="color: #ff0000;margin-left: -0.5em;" ng-show="f.pass.$error.minlength" class="help-block">Psw is too short < 6 .</p><br>
+                                    <p style="color: #ff0000;margin-left: -0.5em;" ng-show="f.pass.$error.maxlength" class="help-block">Psw is too long > 20.</p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p style="color:green;margin-left: -0.5em;" ng-show="f.pass.$valid" class="help-block">Mot de passe Correct</p><br>
+                                    <span ng-show="f.pass.$error.pattern" style="color: #ff0000;margin-left: -0.5em;">Verifier Votre mot de passe SVP!.</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button ng-disabled="f.$invalid" type="submit" class="btn btn-default submit">confirmation</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="clearfix"></div>
+                <div class="separator">
+
+
+                    <div class="clearfix"></div>
+                    <br />
+                    <div>
+                        <h1><i class="fa fa-group" style="font-size: 26px;"></i> STEG!</h1>
+
+                        <p>©2017 Direction de la Production et du Transport Gaz Privacy and Terms</p>
+                    </div>
+                </div>
+
+                <!-- form -->
+            </section>
+            <!-- content -->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var showApp = angular.module('showApp', [])
+
+            .controller('mainController', function($scope) {
+                    $scope.verif = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20}$/;
+
+// set the default value of our number
+                    $scope.code = 0;
+
+// function to evaluate if a number is even
+                    $scope.isEven = function(value) {
+                        $scope.x={{ code }};
+                        if (value  == $scope.x )
+                            return true;
+                        else
+                            return false;
+
+                    };
+
+                }
+
+            );
+
+
+
+    </script>
+{% endblock %}

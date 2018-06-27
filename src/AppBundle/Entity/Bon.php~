@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Bon
+ *
+ * @ORM\Table(name="bon")
+ * @ORM\Entity
+ */
+class Bon
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_bon", type="string", length=30, nullable=false)
+     */
+    private $typeBon;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_bon", type="date", nullable=true)
+     */
+    private $dateBon;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_signataire", type="date", nullable=true)
+     */
+    private $dateSignataire;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_bon", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idBon;
+
+
+}
+

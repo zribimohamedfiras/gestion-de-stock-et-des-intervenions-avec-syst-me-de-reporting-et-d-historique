@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiGroupsKnowbaseitems
+ *
+ * @ORM\Table(name="glpi_groups_knowbaseitems", indexes={@ORM\Index(name="knowbaseitems_id", columns={"knowbaseitems_id"}), @ORM\Index(name="groups_id", columns={"groups_id"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_recursive", columns={"is_recursive"})})
+ * @ORM\Entity
+ */
+class GlpiGroupsKnowbaseitems
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="knowbaseitems_id", type="integer", nullable=false)
+     */
+    private $knowbaseitemsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groups_id", type="integer", nullable=false)
+     */
+    private $groupsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '-1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

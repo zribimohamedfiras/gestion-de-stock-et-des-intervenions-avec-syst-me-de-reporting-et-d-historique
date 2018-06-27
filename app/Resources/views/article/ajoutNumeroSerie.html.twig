@@ -1,0 +1,122 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Ajouter Numero Serie!{% endblock %}
+{% block body %}
+<div class="right_col" role="main" ng-app="showApp" ng-controller="mainController">
+    <div class="">
+
+
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Ajouter Numero Serie <small>Gestion Stock</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ path("confirmation_ajout_Numero_Serie") }}" >
+                            <div class="form-group">
+
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="hidden"  required="required" name="nbrserie" id="nbrserie" class="form-control col-md-7 col-xs-12 " value="{[{ nbr }]}" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="hidden"  required="required" name="article" id="article" class="form-control col-md-7 col-xs-12 " value="{{ arti }}" >
+                                </div>
+                            </div>
+                            <div style="color: #ff243b">{{ msg }}</div>
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Numero Serie 1<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                       <input type="text" id="serie1" name="serie1" class="form-control col-md-7 col-xs-12" required="required">
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-6">
+                                    <a ng-click="ajout()"><i class="fa fa-plus-circle"></i> </a>
+                            </div>
+                                <br>
+                            <div class="ln_solid"></div><br>
+
+                            <div ng-repeat=" n in ranges()">
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Numero Serie {[{ n+1 }]}<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                       <input type="text" id="serie{[{ n+1 }]}" name="serie{[{ n+1 }]}" class="form-control col-md-7 col-xs-12" required="required">
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-5">
+                                <a ng-click="minim()"><i class="fa fa-minus-circle"></i> </a>
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                 <a ng-click="ajout()"><i class="fa fa-plus-circle"></i> </a>
+                            </div><br>
+                            <div class="ln_solid"></div><br>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+                                    <button type="reset" class="btn btn-primary">Cancel</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+
+
+{% endblock %}
+ {% block javascripts %}
+       {{ parent() }}
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var showApp = angular.module('showApp', [])
+            .config(function ($interpolateProvider) {
+                $interpolateProvider.startSymbol('{[{')
+                    .endSymbol('}]}');
+            })
+
+            .controller('mainController', function($scope) {
+
+
+                $scope.nbr=1;
+                $scope.ajout = function () {
+                    $scope.nbr=$scope.nbr+1;
+                }
+                $scope.minim = function () {
+                    $scope.nbr=$scope.nbr-1;
+                }
+                $scope.ranges = function(step) {
+                    step = step || 1;
+                    var input = [];
+                    for (var i = 1; i <= $scope.nbr-1; i += step) {
+                        input.push(i);
+                    }
+                    return input;
+                };
+
+            });
+
+    </script>
+
+
+        {% endblock %}

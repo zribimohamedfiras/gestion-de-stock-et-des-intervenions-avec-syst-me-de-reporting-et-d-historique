@@ -1,0 +1,117 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiProfiles
+ *
+ * @ORM\Table(name="glpi_profiles", indexes={@ORM\Index(name="interface", columns={"interface"}), @ORM\Index(name="is_default", columns={"is_default"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiProfiles
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="interface", type="string", length=255, nullable=true)
+     */
+    private $interface = 'helpdesk';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_default", type="boolean", nullable=false)
+     */
+    private $isDefault = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="helpdesk_hardware", type="integer", nullable=false)
+     */
+    private $helpdeskHardware = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="helpdesk_item_type", type="text", length=65535, nullable=true)
+     */
+    private $helpdeskItemType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ticket_status", type="text", length=65535, nullable=true)
+     */
+    private $ticketStatus;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="problem_status", type="text", length=65535, nullable=true)
+     */
+    private $problemStatus;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="create_ticket_on_login", type="boolean", nullable=false)
+     */
+    private $createTicketOnLogin = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickettemplates_id", type="integer", nullable=false)
+     */
+    private $tickettemplatesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="change_status", type="text", length=65535, nullable=true)
+     */
+    private $changeStatus;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

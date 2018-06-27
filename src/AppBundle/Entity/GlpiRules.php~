@@ -1,0 +1,117 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiRules
+ *
+ * @ORM\Table(name="glpi_rules", indexes={@ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_active", columns={"is_active"}), @ORM\Index(name="sub_type", columns={"sub_type"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="is_recursive", columns={"is_recursive"}), @ORM\Index(name="condition", columns={"condition"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiRules
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sub_type", type="string", length=255, nullable=false)
+     */
+    private $subType = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ranking", type="integer", nullable=false)
+     */
+    private $ranking = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="match", type="string", length=10, nullable=true)
+     */
+    private $match;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uuid", type="string", length=255, nullable=true)
+     */
+    private $uuid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="condition", type="integer", nullable=false)
+     */
+    private $condition = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

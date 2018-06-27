@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiUseremails
+ *
+ * @ORM\Table(name="glpi_useremails", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"users_id", "email"})}, indexes={@ORM\Index(name="email", columns={"email"}), @ORM\Index(name="is_default", columns={"is_default"}), @ORM\Index(name="is_dynamic", columns={"is_dynamic"})})
+ * @ORM\Entity
+ */
+class GlpiUseremails
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_default", type="boolean", nullable=false)
+     */
+    private $isDefault = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_dynamic", type="boolean", nullable=false)
+     */
+    private $isDynamic = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,103 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiTicketcosts
+ *
+ * @ORM\Table(name="glpi_ticketcosts", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="tickets_id", columns={"tickets_id"}), @ORM\Index(name="begin_date", columns={"begin_date"}), @ORM\Index(name="end_date", columns={"end_date"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="budgets_id", columns={"budgets_id"})})
+ * @ORM\Entity
+ */
+class GlpiTicketcosts
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickets_id", type="integer", nullable=false)
+     */
+    private $ticketsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin_date", type="date", nullable=true)
+     */
+    private $beginDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="date", nullable=true)
+     */
+    private $endDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="actiontime", type="integer", nullable=false)
+     */
+    private $actiontime = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cost_time", type="decimal", precision=20, scale=4, nullable=false)
+     */
+    private $costTime = '0.0000';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cost_fixed", type="decimal", precision=20, scale=4, nullable=false)
+     */
+    private $costFixed = '0.0000';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cost_material", type="decimal", precision=20, scale=4, nullable=false)
+     */
+    private $costMaterial = '0.0000';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="budgets_id", type="integer", nullable=false)
+     */
+    private $budgetsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,166 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiProjecttasks
+ *
+ * @ORM\Table(name="glpi_projecttasks", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="is_recursive", columns={"is_recursive"}), @ORM\Index(name="projects_id", columns={"projects_id"}), @ORM\Index(name="projecttasks_id", columns={"projecttasks_id"}), @ORM\Index(name="date", columns={"date"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="plan_start_date", columns={"plan_start_date"}), @ORM\Index(name="plan_end_date", columns={"plan_end_date"}), @ORM\Index(name="real_start_date", columns={"real_start_date"}), @ORM\Index(name="real_end_date", columns={"real_end_date"}), @ORM\Index(name="percent_done", columns={"percent_done"}), @ORM\Index(name="projectstates_id", columns={"projectstates_id"}), @ORM\Index(name="projecttasktypes_id", columns={"projecttasktypes_id"}), @ORM\Index(name="is_milestone", columns={"is_milestone"})})
+ * @ORM\Entity
+ */
+class GlpiProjecttasks
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="projects_id", type="integer", nullable=false)
+     */
+    private $projectsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="projecttasks_id", type="integer", nullable=false)
+     */
+    private $projecttasksId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="plan_start_date", type="datetime", nullable=true)
+     */
+    private $planStartDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="plan_end_date", type="datetime", nullable=true)
+     */
+    private $planEndDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="real_start_date", type="datetime", nullable=true)
+     */
+    private $realStartDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="real_end_date", type="datetime", nullable=true)
+     */
+    private $realEndDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="planned_duration", type="integer", nullable=false)
+     */
+    private $plannedDuration = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="effective_duration", type="integer", nullable=false)
+     */
+    private $effectiveDuration = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="projectstates_id", type="integer", nullable=false)
+     */
+    private $projectstatesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="projecttasktypes_id", type="integer", nullable=false)
+     */
+    private $projecttasktypesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="percent_done", type="integer", nullable=false)
+     */
+    private $percentDone = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_milestone", type="boolean", nullable=false)
+     */
+    private $isMilestone = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

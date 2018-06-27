@@ -1,0 +1,532 @@
+{% extends "basegentela.html.twig" %}
+{% block body %}
+        <!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    Page Home
+                </h3>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        {% if (access[0] or access[2] or access[5])  %}
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Intervention <small>par Intervenant </small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="mainb" style="height:450px;"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+        <div class="row">
+            <div class="col-md-7 col-sm-7 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Intervention <small>par marge de date </small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div id="echart_interdate" style="height:450px;"></div>
+
+                        </div>
+                    </div></div>
+
+
+
+
+            <div class="col-md-5 col-sm-5 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Intervention <small>par Station </small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="echart_pie" style="height:490px;"></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        {% endif %}
+
+        <div class="clearfix"></div>
+{% if (access[0]==true)or(access[1]==true)or(access[5]==true)  %}
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Bon d'article <small>par Demandeur </small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="echart_line" style="height:450px;"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Bon d'article <small>par Station </small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="articlestation" style="height:450px;"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            {% endif %}
+            <div class="clearfix"></div>
+            {% if (access[0]==true)or(access[3]==true)or(access[5]==true)  %}
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Voiture <small>par Demandeur </small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="example3.1" style="height: 450px"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <!-- echart -->
+
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/echart/echarts-all.js' output='js/echart/echarts-all.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% javascripts '@AppBundle/Resources/public/gentelella/js/echart/green.js' output='js/echart/green.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+<script>
+    Chart.defaults.global.legend = {
+      enabled: false
+    };
+
+    //intervention par marge de date
+
+var myChart = echarts.init(document.getElementById('echart_interdate'), theme);
+         myChart.setOption({
+             title: {
+                 text: 'Intervention par marge de date',
+                 subtext: 'Intervention'
+             },
+             tooltip: {
+                 trigger: 'axis'
+             },
+             legend: {
+                 data: ['Intervention']
+             },
+             series: [{
+                 name: 'Intervention',
+                 type: 'line',
+                 smooth: true,
+                 itemStyle: {
+                     normal: {
+                         areaStyle: {
+                             type: 'default'
+                         }
+                     }
+                 },
+                 data: [{% for c in count %}{{ c }},{% endfor %}]
+             }],
+             toolbox: {
+                 show: true,
+                 feature: {
+                     magicType: {
+                         show: true,
+                         type: ['line', 'bar', 'stack', 'tiled']
+                     },
+                     restore: {
+                         show: true
+                     },
+                     saveAsImage: {
+                         show: true
+                     }
+                 }
+             },
+             calculable: true,
+             xAxis: [{
+                 type: 'category',
+                 boundaryGap: false,
+                 data: [{% for dt in datee %}'{{ dt }}',{% endfor %}]
+             }],
+             yAxis: [{
+                 type: 'value'
+             }]
+         });
+
+    // echart_pie intervention par station
+
+
+
+    var myChart = echarts.init(document.getElementById('echart_pie'), theme);
+    myChart.setOption({
+      tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+      },
+      legend: {
+        //orient: 'vertical',
+        //x: 'left',
+        x: 'center',
+        y: 'bottom',
+        data: [{% for loc in locationname %}'{{ loc }}',{% endfor %}]
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          magicType: {
+            show: true,
+            type: ['pie',],
+            option: {
+              funnel: {
+                x: '25%',
+                width: '50%',
+                funnelAlign: 'left',
+                max: 1548
+              }
+            }
+          },
+          restore: {
+            show: true
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      calculable: true,
+      series: [{
+        name: 'Intervention par station',
+        type: 'pie',
+        radius: '55%',
+        center: ['50%', '48%'], //left,top
+        data: [{% for k in range(0,totallocation) %}{
+          value: {{ locationnbr[k] }},
+          name: '{{ locationname[k] }}'
+        },
+        {% endfor %}
+        ]
+      }]
+    });
+
+
+    var dataStyle = {
+      normal: {
+        label: {
+          show: false
+        },
+        labelLine: {
+          show: false
+        }
+      }
+    };
+    var placeHolderStyle = {
+      normal: {
+        color: 'rgba(0,0,0,0)',
+        label: {
+          show: false
+        },
+        labelLine: {
+          show: false
+        }
+      },
+      emphasis: {
+        color: 'rgba(0,0,0,0)'
+      }
+    };
+
+    //Bon d'article par Demandeur
+
+    var myChart = echarts.init(document.getElementById('echart_line'), theme);
+    myChart.setOption({
+      title: {
+        text: 'Bon d\'article par Demandeur',
+        subtext: 'Nombre Bon'
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data: ['Entrée', 'Sortie', 'Retour']
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          magicType: {
+            show: true,
+            type: ['bar', 'stack', 'tiled']
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      calculable: true,
+      xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: [{% for inter in intervenant %}"{{ inter }}",{% endfor %}]
+      }],
+      yAxis: [{
+        type: 'value'
+      }],
+      series: [{
+        name: 'Retour',
+        type: 'bar',
+        smooth: true,
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default'
+            }
+          }
+        },
+        data: [{% for retour in nbrretour %}{{ retour }},{% endfor %}]
+      }, {
+        name: 'Sortie',
+        type: 'bar',
+        smooth: true,
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default'
+            }
+          }
+        },
+        data: [{% for sortie in nbrsortie %}{{ sortie }},{% endfor %}]
+      }, {
+        name: 'Entrée',
+        type: 'bar',
+        smooth: true,
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default'
+            }
+          }
+        },
+        data: [{% for entree in nbrentree %}{{ entree }},{% endfor %}]
+      }]
+    });
+
+    // bon d'article par station
+
+    var myChart = echarts.init(document.getElementById('articlestation'), theme);
+    myChart.setOption({
+      title: {
+        text: 'Bon d\'article par Station',
+        subtext: 'Nombre Bon'
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data: ['Entrée', 'Sortie', 'Retour']
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          magicType: {
+            show: true,
+            type: ['bar', 'stack', 'tiled']
+          },
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      calculable: true,
+      xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: [{% for loc in locationname %}"{{ loc }}",{% endfor %}]
+      }],
+      yAxis: [{
+        type: 'value'
+      }],
+      series: [{
+        name: 'Retour',
+        type: 'bar',
+        smooth: true,
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default'
+            }
+          }
+        },
+        data: [{% for retour in nbrstatretour %}{{ retour }},{% endfor %}]
+      }, {
+        name: 'Sortie',
+        type: 'bar',
+        smooth: true,
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default'
+            }
+          }
+        },
+        data: [{% for sortie in nbrstatsortie %}{{ sortie }},{% endfor %}]
+      }, {
+        name: 'Entrée',
+        type: 'bar',
+        smooth: true,
+        itemStyle: {
+          normal: {
+            areaStyle: {
+              type: 'default'
+            }
+          }
+        },
+        data: [{% for entree in nbrstatentree %}{{ entree }},{% endfor %}]
+      }]
+    });
+
+    //Intervention par intervenant
+
+    var myChart9 = echarts.init(document.getElementById('mainb'), theme);
+    myChart9.setOption({
+      title: {
+        text: 'Intervention par intervenant',
+        subtext: 'Nombre d\'intervention'
+      },
+      //theme : theme,
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data: ['Intervention']
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          saveAsImage: {
+            show: true
+          }
+        }
+      },
+      calculable: false,
+      xAxis: [{
+        type: 'category',
+        data: [{% for inter in intervenant %}"{{ inter }}",{% endfor %}]
+      }],
+      yAxis: [{
+        type: 'value'
+      }],
+      series: [{
+        name: 'Intervention',
+        type: 'bar',
+        data: [{% for nbinter in nbrinterv %}{{ nbinter }},{% endfor %}],
+
+      }]
+    });
+
+  </script>
+
+  \\voiture par demandeur
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.charts.load("current", {packages:["timeline"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var container = document.getElementById('example3.1');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'string', id: 'Position' });
+        dataTable.addColumn({ type: 'string', id: 'Name' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+            {% set i=0 %}
+            {% for mis in mission  %}
+            [ '{{ mis.getVehicule().getNumvehicule() }}', '{{ mis.getDemandeur().getPrenom() }} {{ mis.getDemandeur().getNom() }}', new Date({{ tab[i][2] }},{{ tab[i][1] }},{{ tab[i][0] }}), new Date({{ tab[i][5] }},{{ tab[i][4] }},{{ tab[i][3] }}) ],
+            {% set i=i+1 %}
+            {% endfor %}
+        ]);
+
+        chart.draw(dataTable);
+
+    }
+</script>
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/gauge/jquery-ui.js' output='js/gauge/jquery-ui.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/datepicker/js/bootstrap-datepicker.js'  output='js/bootstrap-datepicker.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+
+     <script>
+
+         $('#sandbox-container input').datepicker({
+             format: 'dd/mm/yyyy'
+         });
+
+     </script>
+
+
+ {% endblock %}

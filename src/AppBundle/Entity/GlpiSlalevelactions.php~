@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiSlalevelactions
+ *
+ * @ORM\Table(name="glpi_slalevelactions", indexes={@ORM\Index(name="slalevels_id", columns={"slalevels_id"})})
+ * @ORM\Entity
+ */
+class GlpiSlalevelactions
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="slalevels_id", type="integer", nullable=false)
+     */
+    private $slalevelsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="action_type", type="string", length=255, nullable=true)
+     */
+    private $actionType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="field", type="string", length=255, nullable=true)
+     */
+    private $field;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=255, nullable=true)
+     */
+    private $value;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiNetworkaliases
+ *
+ * @ORM\Table(name="glpi_networkaliases", indexes={@ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="networknames_id", columns={"networknames_id"})})
+ * @ORM\Entity
+ */
+class GlpiNetworkaliases
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="networknames_id", type="integer", nullable=false)
+     */
+    private $networknamesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="fqdns_id", type="integer", nullable=false)
+     */
+    private $fqdnsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

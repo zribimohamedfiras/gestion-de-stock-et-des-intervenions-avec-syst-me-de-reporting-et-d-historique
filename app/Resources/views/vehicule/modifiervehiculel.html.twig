@@ -1,0 +1,224 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Modifier Vehicule{% endblock %}
+{% block body %}
+    <div class="right_col" role="main">
+        <div class="">
+
+
+
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Modifier Vehicule <small>Gestion Intervention</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <br />
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ path("modifier_vehicule") }}" >
+
+                                <input type="hidden" id="idvehicule" name="idvehicule" required="required" class="form-control col-md-7 col-xs-12 " value="{{ res.getIdvehicule() }}">
+
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="num_vehicule">Num vehicule <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="num_vehicule" name="num_vehicule" required="required" class="form-control col-md-7 col-xs-12 disabled" disabled="disabled" value="{{ res.getNumVehicule() }}">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="UT">UT <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="UT" name="UT" required="required" class="form-control col-md-7 col-xs-12" value="{{ res.getUT() }}">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="marque">Marque <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="marque" name="marque" required="required" class="form-control col-md-7 col-xs-12" value="{{ res.getMarque() }}">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genre">Genre <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="genre" name="genre" required="required" class="form-control col-md-7 col-xs-12" value="{{ res.getGenre() }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="puissance">puissance <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="puissance" name="puissance" required="required" class="form-control col-md-7 col-xs-12" value="{{ res.getPuissance() }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="carburant">Carburant<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="carburant" name="carburant" required="required" class="form-control col-md-7 col-xs-12" value="{{ res.getCarburant() }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dateEntre">Date Entre vehicule <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control col-md-7 col-xs-1 disabled"
+
+                                               value="{{ res.getDateEntre() }}"    name="dateEntre" data-inputmask="'mask': '99/99/2099'" required="required">
+                                        <span class="fa fa-calendar form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="disponibilte">Disponibilte<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select class="form-control" tabindex="-1" name="disponibilte" required="true">
+                                                <option></option>
+
+                                                <option {% if res.getDisponibilite()==0 %} selected="selected" {% endif %} value="0">Non Disponible</option>
+                                                <option {% if res.getDisponibilite()==1 %} selected="selected" {% endif %} value="1">Disponible</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="etat">Etat <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="form-control" tabindex="-1" name="etat" required="true">
+                                            <option></option>
+
+                                            <option {% if res.getEtat()=='fonctionnel' %} selected="selected" {% endif %} value="fonctionnel">Fonctionnel</option>
+                                            <option {% if res.getEtat()=='en panne' %} selected="selected" {% endif %} value="en panne">En Panne</option>
+
+
+                                        </select>
+                                        </div>
+                                </div><div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="indexkm">Indexkm <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="indexkm" name="indexkm" required="required" class="form-control col-md-7 col-xs-12" value="{{ res.getIndexkm() }}">
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <a class="btn btn-default submit" href="{{ path('affichervehicule') }}" >Retour</a>
+                                    </div>
+                                </div>
+
+                                </div>
+
+                            </form>
+                            </center>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+        {% block javascripts %}
+            {{ parent() }}
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#birthday').daterangepicker({
+                        singleDatePicker: true,
+                        calender_style: "picker_4"
+                    }, function(start, end, label) {
+                        console.log(start.toISOString(), end.toISOString(), label);
+                    });
+                });
+            </script>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+            {% javascripts '@AppBundle/Resources/public/gentelella/js/select/select2.full.js' output='js/select/select2.full.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <script>
+                $(document).ready(function() {
+                    $(".select2_single").select2({
+                        placeholder: "Select un parmit les options",
+                        allowClear: true
+                    });
+                    $(".select2_group").select2({});
+                    $(".select2_multiple").select2({
+                        maximumSelectionLength: 4,
+                        placeholder: "With Max Selection limit 4",
+                        allowClear: true
+                    });
+                });
+            </script>
+
+            <!-- input mask -->
+            {% javascripts '@AppBundle/Resources/public/gentelella/js/input_mask/jquery.inputmask.js' output='js/input_mask/jquery.inputmask.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <!-- input_mask -->
+            <script>
+                $(document).ready(function() {
+                    $(":input").inputmask();
+                });
+            </script>
+            <!-- /input mask -->
+
+        {% endblock %}

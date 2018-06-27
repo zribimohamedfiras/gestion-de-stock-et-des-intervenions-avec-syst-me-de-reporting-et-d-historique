@@ -1,0 +1,565 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiUsers
+ *
+ * @ORM\Table(name="glpi_users", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"name"})}, indexes={@ORM\Index(name="firstname", columns={"firstname"}), @ORM\Index(name="realname", columns={"realname"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="profiles_id", columns={"profiles_id"}), @ORM\Index(name="locations_id", columns={"locations_id"}), @ORM\Index(name="usertitles_id", columns={"usertitles_id"}), @ORM\Index(name="usercategories_id", columns={"usercategories_id"}), @ORM\Index(name="is_deleted", columns={"is_deleted"}), @ORM\Index(name="is_active", columns={"is_active"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="authitem", columns={"authtype", "auths_id"}), @ORM\Index(name="is_deleted_ldap", columns={"is_deleted_ldap"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiUsers
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone2", type="string", length=255, nullable=true)
+     */
+    private $phone2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mobile", type="string", length=255, nullable=true)
+     */
+    private $mobile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="realname", type="string", length=255, nullable=true)
+     */
+    private $realname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
+     */
+    private $firstname;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="locations_id", type="integer", nullable=false)
+     */
+    private $locationsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="language", type="string", length=10, nullable=true)
+     */
+    private $language;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="use_mode", type="integer", nullable=false)
+     */
+    private $useMode = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="list_limit", type="integer", nullable=true)
+     */
+    private $listLimit;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="auths_id", type="integer", nullable=false)
+     */
+    private $authsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="authtype", type="integer", nullable=false)
+     */
+    private $authtype = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     */
+    private $lastLogin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_sync", type="datetime", nullable=true)
+     */
+    private $dateSync;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    private $isDeleted = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="profiles_id", type="integer", nullable=false)
+     */
+    private $profilesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="usertitles_id", type="integer", nullable=false)
+     */
+    private $usertitlesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="usercategories_id", type="integer", nullable=false)
+     */
+    private $usercategoriesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="date_format", type="integer", nullable=true)
+     */
+    private $dateFormat;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="number_format", type="integer", nullable=true)
+     */
+    private $numberFormat;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="names_format", type="integer", nullable=true)
+     */
+    private $namesFormat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="csv_delimiter", type="string", length=1, nullable=true)
+     */
+    private $csvDelimiter;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_ids_visible", type="boolean", nullable=true)
+     */
+    private $isIdsVisible;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_flat_dropdowntree", type="boolean", nullable=true)
+     */
+    private $useFlatDropdowntree;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="show_jobs_at_login", type="boolean", nullable=true)
+     */
+    private $showJobsAtLogin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="priority_1", type="string", length=20, nullable=true)
+     */
+    private $priority1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="priority_2", type="string", length=20, nullable=true)
+     */
+    private $priority2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="priority_3", type="string", length=20, nullable=true)
+     */
+    private $priority3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="priority_4", type="string", length=20, nullable=true)
+     */
+    private $priority4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="priority_5", type="string", length=20, nullable=true)
+     */
+    private $priority5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="priority_6", type="string", length=20, nullable=true)
+     */
+    private $priority6;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="followup_private", type="boolean", nullable=true)
+     */
+    private $followupPrivate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="task_private", type="boolean", nullable=true)
+     */
+    private $taskPrivate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="default_requesttypes_id", type="integer", nullable=true)
+     */
+    private $defaultRequesttypesId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password_forget_token", type="string", length=40, nullable=true)
+     */
+    private $passwordForgetToken;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="password_forget_token_date", type="datetime", nullable=true)
+     */
+    private $passwordForgetTokenDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_dn", type="text", length=65535, nullable=true)
+     */
+    private $userDn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="registration_number", type="string", length=255, nullable=true)
+     */
+    private $registrationNumber;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="show_count_on_tabs", type="boolean", nullable=true)
+     */
+    private $showCountOnTabs;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="refresh_ticket_list", type="integer", nullable=true)
+     */
+    private $refreshTicketList;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="set_default_tech", type="boolean", nullable=true)
+     */
+    private $setDefaultTech;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="personal_token", type="string", length=255, nullable=true)
+     */
+    private $personalToken;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="personal_token_date", type="datetime", nullable=true)
+     */
+    private $personalTokenDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="display_count_on_home", type="integer", nullable=true)
+     */
+    private $displayCountOnHome;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="notification_to_myself", type="boolean", nullable=true)
+     */
+    private $notificationToMyself;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duedateok_color", type="string", length=255, nullable=true)
+     */
+    private $duedateokColor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duedatewarning_color", type="string", length=255, nullable=true)
+     */
+    private $duedatewarningColor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duedatecritical_color", type="string", length=255, nullable=true)
+     */
+    private $duedatecriticalColor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duedatewarning_less", type="integer", nullable=true)
+     */
+    private $duedatewarningLess;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duedatecritical_less", type="integer", nullable=true)
+     */
+    private $duedatecriticalLess;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duedatewarning_unit", type="string", length=255, nullable=true)
+     */
+    private $duedatewarningUnit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duedatecritical_unit", type="string", length=255, nullable=true)
+     */
+    private $duedatecriticalUnit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="display_options", type="text", length=65535, nullable=true)
+     */
+    private $displayOptions;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted_ldap", type="boolean", nullable=false)
+     */
+    private $isDeletedLdap = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pdffont", type="string", length=255, nullable=true)
+     */
+    private $pdffont;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin_date", type="datetime", nullable=true)
+     */
+    private $beginDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="datetime", nullable=true)
+     */
+    private $endDate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="keep_devices_when_purging_item", type="boolean", nullable=true)
+     */
+    private $keepDevicesWhenPurgingItem;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="privatebookmarkorder", type="text", nullable=true)
+     */
+    private $privatebookmarkorder;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="backcreated", type="boolean", nullable=true)
+     */
+    private $backcreated;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="task_state", type="integer", nullable=true)
+     */
+    private $taskState;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="layout", type="string", length=20, nullable=true)
+     */
+    private $layout;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="palette", type="string", length=20, nullable=true)
+     */
+    private $palette;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ticket_timeline", type="boolean", nullable=true)
+     */
+    private $ticketTimeline;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ticket_timeline_keep_replaced_tabs", type="boolean", nullable=true)
+     */
+    private $ticketTimelineKeepReplacedTabs;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="set_default_requester", type="boolean", nullable=true)
+     */
+    private $setDefaultRequester;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="lock_autolock_mode", type="boolean", nullable=true)
+     */
+    private $lockAutolockMode;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="lock_directunlock_notification", type="boolean", nullable=true)
+     */
+    private $lockDirectunlockNotification;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="highcontrast_css", type="boolean", nullable=true)
+     */
+    private $highcontrastCss = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="plannings", type="text", length=65535, nullable=true)
+     */
+    private $plannings;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

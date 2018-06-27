@@ -1,0 +1,173 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiGroups
+ *
+ * @ORM\Table(name="glpi_groups", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="ldap_field", columns={"ldap_field"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="ldap_value", columns={"ldap_value"}), @ORM\Index(name="ldap_group_dn", columns={"ldap_group_dn"}), @ORM\Index(name="groups_id", columns={"groups_id"}), @ORM\Index(name="is_requester", columns={"is_requester"}), @ORM\Index(name="is_assign", columns={"is_assign"}), @ORM\Index(name="is_notify", columns={"is_notify"}), @ORM\Index(name="is_itemgroup", columns={"is_itemgroup"}), @ORM\Index(name="is_usergroup", columns={"is_usergroup"}), @ORM\Index(name="is_manager", columns={"is_manager"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiGroups
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ldap_field", type="string", length=255, nullable=true)
+     */
+    private $ldapField;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ldap_value", type="text", length=65535, nullable=true)
+     */
+    private $ldapValue;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ldap_group_dn", type="text", length=65535, nullable=true)
+     */
+    private $ldapGroupDn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groups_id", type="integer", nullable=false)
+     */
+    private $groupsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="completename", type="text", length=65535, nullable=true)
+     */
+    private $completename;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ancestors_cache", type="text", nullable=true)
+     */
+    private $ancestorsCache;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sons_cache", type="text", nullable=true)
+     */
+    private $sonsCache;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_requester", type="boolean", nullable=false)
+     */
+    private $isRequester = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_assign", type="boolean", nullable=false)
+     */
+    private $isAssign = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_notify", type="boolean", nullable=false)
+     */
+    private $isNotify = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_itemgroup", type="boolean", nullable=false)
+     */
+    private $isItemgroup = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_usergroup", type="boolean", nullable=false)
+     */
+    private $isUsergroup = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_manager", type="boolean", nullable=false)
+     */
+    private $isManager = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_task", type="boolean", nullable=false)
+     */
+    private $isTask = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

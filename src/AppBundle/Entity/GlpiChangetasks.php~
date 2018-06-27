@@ -1,0 +1,110 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiChangetasks
+ *
+ * @ORM\Table(name="glpi_changetasks", indexes={@ORM\Index(name="changes_id", columns={"changes_id"}), @ORM\Index(name="state", columns={"state"}), @ORM\Index(name="users_id", columns={"users_id"}), @ORM\Index(name="users_id_tech", columns={"users_id_tech"}), @ORM\Index(name="groups_id_tech", columns={"groups_id_tech"}), @ORM\Index(name="date", columns={"date"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="begin", columns={"begin"}), @ORM\Index(name="end", columns={"end"}), @ORM\Index(name="taskcategories_id", columns={"taskcategories_id"})})
+ * @ORM\Entity
+ */
+class GlpiChangetasks
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="changes_id", type="integer", nullable=false)
+     */
+    private $changesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="taskcategories_id", type="integer", nullable=false)
+     */
+    private $taskcategoriesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="state", type="integer", nullable=false)
+     */
+    private $state = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="begin", type="datetime", nullable=true)
+     */
+    private $begin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end", type="datetime", nullable=true)
+     */
+    private $end;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id", type="integer", nullable=false)
+     */
+    private $usersId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="users_id_tech", type="integer", nullable=false)
+     */
+    private $usersIdTech = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groups_id_tech", type="integer", nullable=false)
+     */
+    private $groupsIdTech = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="actiontime", type="integer", nullable=false)
+     */
+    private $actiontime = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

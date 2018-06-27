@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+{% block title %}Register!{% endblock %}
+{% block body %}
+    <div id="wrapper">
+        <div  class="animate form">
+            <section class="login_content">
+                {{ form_start(form) }}
+                <h1>Modifier un Utilisateur</h1>
+{{ slug }}
+                <div>
+                    {{ form_row(form.username,{'attr': {'required':'false','class': 'form-control','placeholder': 'username'}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.email,{'attr': {'class': 'form-control','placeholder': 'Email'}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.plainPassword.first,{'attr': {'class': 'form-control','placeholder': 'Password'}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.plainPassword.second,{'attr': {'class': 'form-control','placeholder': 'Repeat Password'}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.nom,{'attr': {'class': 'form-control','placeholder': 'Nom'}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.prenom,{'attr': {'class': 'form-control','placeholder': 'Prenom'}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.ncin,{'attr': {'class': 'form-control','placeholder': 'NCIN','maxlength': "8",'minlength': "8"}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.matricule,{'attr': {'class': 'form-control','placeholder': 'Matricule','maxlength': "8",'minlength': "8"}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.societe,{'attr': {'class': 'form-control','placeholder': 'Societe'}}) }}
+                </div>
+                <div>
+                    {{ form_row(form.role,{'attr': {'class': 'form-control','placeholder': 'Role'}}) }}
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-default">Valider</button>
+                </div>
+                {{ form_end(form) }}
+                <div class="clearfix"></div>
+                <div class="separator">
+
+
+                    <div class="clearfix"></div>
+                    <br />
+                    <div>
+                        <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Steg!</h1>
+
+                        <p>©2017 Direction de la Production et du Transport  Gaz. Privacy and Terms</p>
+                    </div>
+                </div>
+
+                <!-- form -->
+            </section>
+            <!-- content -->
+        </div>
+    </div>
+{% endblock %}

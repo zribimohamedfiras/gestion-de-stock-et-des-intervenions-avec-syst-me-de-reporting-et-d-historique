@@ -1,0 +1,159 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiStates
+ *
+ * @ORM\Table(name="glpi_states", indexes={@ORM\Index(name="name", columns={"name"}), @ORM\Index(name="unicity", columns={"states_id", "name"}), @ORM\Index(name="is_visible_computer", columns={"is_visible_computer"}), @ORM\Index(name="is_visible_monitor", columns={"is_visible_monitor"}), @ORM\Index(name="is_visible_networkequipment", columns={"is_visible_networkequipment"}), @ORM\Index(name="is_visible_peripheral", columns={"is_visible_peripheral"}), @ORM\Index(name="is_visible_phone", columns={"is_visible_phone"}), @ORM\Index(name="is_visible_printer", columns={"is_visible_printer"}), @ORM\Index(name="is_visible_softwareversion", columns={"is_visible_softwareversion"}), @ORM\Index(name="is_visible_softwarelicense", columns={"is_visible_softwarelicense"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiStates
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="states_id", type="integer", nullable=false)
+     */
+    private $statesId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="completename", type="text", length=65535, nullable=true)
+     */
+    private $completename;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ancestors_cache", type="text", nullable=true)
+     */
+    private $ancestorsCache;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sons_cache", type="text", nullable=true)
+     */
+    private $sonsCache;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_computer", type="boolean", nullable=false)
+     */
+    private $isVisibleComputer = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_monitor", type="boolean", nullable=false)
+     */
+    private $isVisibleMonitor = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_networkequipment", type="boolean", nullable=false)
+     */
+    private $isVisibleNetworkequipment = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_peripheral", type="boolean", nullable=false)
+     */
+    private $isVisiblePeripheral = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_phone", type="boolean", nullable=false)
+     */
+    private $isVisiblePhone = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_printer", type="boolean", nullable=false)
+     */
+    private $isVisiblePrinter = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_softwareversion", type="boolean", nullable=false)
+     */
+    private $isVisibleSoftwareversion = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_softwarelicense", type="boolean", nullable=false)
+     */
+    private $isVisibleSoftwarelicense = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

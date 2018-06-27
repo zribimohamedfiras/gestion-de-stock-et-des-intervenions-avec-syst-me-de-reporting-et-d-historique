@@ -1,0 +1,75 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiPlugins
+ *
+ * @ORM\Table(name="glpi_plugins", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"directory"})}, indexes={@ORM\Index(name="state", columns={"state"})})
+ * @ORM\Entity
+ */
+class GlpiPlugins
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="directory", type="string", length=255, nullable=false)
+     */
+    private $directory;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="version", type="string", length=255, nullable=false)
+     */
+    private $version;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="state", type="integer", nullable=false)
+     */
+    private $state = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="author", type="string", length=255, nullable=true)
+     */
+    private $author;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="homepage", type="string", length=255, nullable=true)
+     */
+    private $homepage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="license", type="string", length=255, nullable=true)
+     */
+    private $license;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

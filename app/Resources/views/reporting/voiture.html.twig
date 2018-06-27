@@ -1,0 +1,116 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Afficher Statistique Globale{% endblock %}
+{% block body %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/datepicker/css/bootstrap-datepicker.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/datepicker/css/bootstrap-datepicker.standalone.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/datepicker/css/bootstrap-datepicker3.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets filter='cssrewrite' 'Bundles/app/datepicker/css/bootstrap-datepicker3.standalone.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    Consulter Statistique Globale
+                    <small>
+                        Gestion Roporting
+                    </small>
+                </h3>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Voiture <small>par Demandeur </small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="example3.1" style="height: 450px"></div>
+                        <div class="span5 col-md-6 col-md-offset-8">
+                            <form method="POST" action="{{ path("confirmvoiture") }}">
+                                <div class="span5 col-md-3" id="sandbox-container">
+                                    <input type="text" class="form-control" placeholder="Date Début" name="debut" required="required">
+                                </div>
+
+                                <div class="span5 col-md-3" id="sandbox-container">
+                                    <input type="text" class="form-control" placeholder="Date Fin" name="fin" required="required">
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="Filtrer">
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div></div></div>
+    </div>
+</div>
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.charts.load("current", {packages:["timeline"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var container = document.getElementById('example3.1');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'string', id: 'Position' });
+        dataTable.addColumn({ type: 'string', id: 'Name' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+            {% set i=0 %}
+            {% for mis in mission  %}
+            [ '{{ mis.getVehicule().getNumvehicule() }}', '{{ mis.getDemandeur().getPrenom() }} {{ mis.getDemandeur().getNom() }}', new Date({{ tab[i][2] }},{{ tab[i][1] }},{{ tab[i][0] }}), new Date({{ tab[i][5] }},{{ tab[i][4] }},{{ tab[i][3] }}) ],
+            {% set i=i+1 %}
+            {% endfor %}
+        ]);
+
+        chart.draw(dataTable);
+
+    }
+</script>
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/gauge/jquery-ui.js' output='js/gauge/jquery-ui.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/datepicker/js/bootstrap-datepicker.js'  output='js/bootstrap-datepicker.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+
+     <script>
+
+         $('#sandbox-container input').datepicker({
+             format: 'dd/mm/yyyy'
+         });
+
+     </script>
+{% endblock %}
+
+

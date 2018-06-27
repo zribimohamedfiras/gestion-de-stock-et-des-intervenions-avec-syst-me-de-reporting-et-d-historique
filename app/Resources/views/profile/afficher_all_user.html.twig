@@ -1,0 +1,397 @@
+{% extends "basegentela.html.twig" %}
+{% block title %}Affecter ce Profile{% endblock %}
+
+
+    {% block stylesheet %}
+        {{ parent() }}
+
+        {% stylesheets 'Bundles/app/css/styles.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/jquery.dataTables.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/buttons.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/fixedHeader.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/responsive.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+
+
+        {% stylesheets 'Bundles/app/gentelella/js/datatables/scroller.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+        {% stylesheets 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% stylesheets 'https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
+    {% endblock %}
+
+
+{% block body %}
+    <div class="right_col" role="main">
+        <div class="">
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Affecter Profile à utilisateur <small>Gestion Profile</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="clearfix"></div>
+                            <br><br>
+
+
+
+
+
+
+
+                            <form action="{{ path('ajouterprofileutilisateur') }}" method="post">
+
+                                <input type="hidden" name="name" value="{{ name_profile }}">
+                                <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-4">
+                                    <button type="submit" class="btn btn-default submit" >Choisir un Profil pour plusieurs utilisateurs</button>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-1">
+                                    <a class="btn btn-default submit" href="{{ path('afficheprofile') }}" >Retour</a>
+                                </div>
+                            </form>
+
+
+
+                            <br><br><br><br>
+
+                            <div class="row">
+
+                                {% for flash_message in app.session.flashBag.get('msg') %}
+                                    <div class="alert-success">
+                                        {{ flash_message }}
+                                    </div>
+                                {% endfor %}
+
+
+                                <a href="#/check-square"><i class="fa fa-check-square">{{ message }}:</i> {{ name_profile }}</a>
+
+                                {% for flash_message in app.session.flashBag.get('notice') %}
+                                    <div class="alert-success">
+                                        {{ flash_message }}
+                                    </div>
+                                {% endfor %}
+
+                                <table  id="example" class="table table-striped table-bordered  " cellspacing="0" width="100%" style="width: 50%">
+                                    <thead>
+                                    <tr>
+                                        <th><center>Email</center></th>
+                                        <th><center>Nom</center></th>
+                                        <th><center>Nom (ar)</center></th>
+                                        <th><center>Prenom</center></th>
+                                        <th><center>Prenom (ar)</center></th>
+                                        <th><center>Ncin</center></th>
+                                        <th><center>Matricule</center></th>
+                                        <th><center>Liste de Profils</center></th>
+                                        <th><center>Societe</center></th>
+                                        <th><center>Fonction (ar)</center></th>
+                                        <th><center>Categorie (ar)</center></th>
+                                        <th><center>Fonction (Fr)</center></th>
+                                        <th><center>Direction</center></th>
+                                        <th><center>Unite </center></th>
+                                        <th><center>Astreint</center> </th>
+                                        <th><center>Affecter</center> </th>
+                                        <th><center>Détacher</center> </th>
+
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+
+                                    {% for r in res %}
+                                        <tr>
+                                            <td><center>{{ r.getEmail() }}   </center></td>
+                                            <td> <center>{{ r.getNom() }}</center> </td>
+                                            <td> <center>{{ r.getNomAr() }}</center>  </td>
+                                            <td><center> {{ r.getPrenom() }}</center> </td>
+                                            <td> <center>{{ r.getPrenomAr() }}</center> </td>
+                                            <td><center>{{ r.getNcin() }}</center></td>
+
+                                            <td><center> {{ r.getMatricule() }}</center></td>
+
+
+
+
+
+                                            <form action="{{ path('Profile_utilisateur') }}" method="post">
+                                                <td><center>
+                                                        <input type="hidden" name="Username" value="{{  r.getUsername() }}">
+                                                        <input type="hidden" name="name" value="{{ name_profile }}">
+                                                        <button type="submit" class="btn btn-default success">Afficher</button>
+
+
+
+
+                                                    </center></td></form>
+
+
+
+
+
+
+
+
+
+
+                                            <td><center> {{ r.getSociete() }}</center></td>
+                                            <td><center> {{ r.getFonctionAr() }}</center></td>
+                                            <td><center> {{ r.getCategorieAr() }}</center></td>
+
+                                            <td><center> {{ r.getFonctionFr() }}</center></td>
+                                            <td><center> {{ r.getDirection() }}</center></td>
+                                            <td><center> {{ r.getUnite() }}</center></td>
+
+
+                                            {% if  r.getIsAstreint() == 1 %}
+                                                <td><center>Astreint </center></td>
+                                            {% else %}
+                                                <td><center>Non Astreint</center></td>
+                                            {% endif %}
+
+
+
+
+                                            <form action="{{ path('affecterprofile') }}" method="post">
+                                                <td><center>
+                                                        <input type="hidden" name="Username" value="{{  r.getUsername() }}">
+                                                        <input type="hidden" name="name" value="{{ name_profile }}">
+
+
+
+
+
+                                                        <a id="modal-85390" href="#modal-container-85390{{  r.getUsername() }}" role="button" class="btn btn-default submit" data-toggle="modal">Affecter profile</a>
+                                                        <div class="modal fade" id="modal-container-85390{{  r.getUsername() }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                                            ×
+                                                                        </button>
+                                                                        <h4 class="modal-title" id="myModalLabel">
+                                                                            Affecter
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Confirmation du l'affectation
+                                                                    </div>
+                                                                    <div class="modal-footer">
+
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                                            Close
+                                                                        </button>
+                                                                        <button type="submit" class="btn btn-default success">Confirmer</button>
+                                                                        <input type="hidden" name="name" value="{{ name_profile }}">
+                                                                        <input type="hidden" name="Username" value="{{  r.getUsername() }}">
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+
+
+
+
+                                                    </center></td></form>
+
+
+
+
+
+
+                                            <form action="{{ path('detacherprofile') }}" method="post">
+                                                <td><center>
+                                                        <input type="hidden" name="name" value="{{ name_profile }}">
+                                                        <input type="hidden" name="Username" value="{{  r.getUsername() }}">
+
+
+                                                        <a id="modal-8539" href="#modal-container-8539{{  r.getUsername() }}" role="button" class="btn btn-default submit" data-toggle="modal">Detacher</a>
+                                                        <div class="modal fade" id="modal-container-8539{{  r.getUsername() }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                                            ×
+                                                                        </button>
+                                                                        <h4 class="modal-title" id="myModalLabel">
+                                                                            Detacher
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Confirmation du suppression
+                                                                    </div>
+                                                                    <div class="modal-footer">
+
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                                            Close
+                                                                        </button>
+                                                                        <button type="submit" class="btn btn-default success">Confirmer</button>
+                                                                        <input type="hidden" name="name" value="{{ name_profile }}">
+                                                                        <input type="hidden" name="Username" value="{{  r.getUsername() }}">
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+
+
+
+
+                                                    </center></td></form>
+
+
+
+                                        </tr>
+
+                                    {% endfor %}
+                                    </tbody>
+
+                                </table>
+
+
+
+
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label> Liste de profile de l'utilsateur : {{ input }}:<span style="color:#0f0f0f;font-weight:bold"></span></label>
+                                    </div>
+
+
+                                    <div class="col-sm-5">
+                                        <select   class="form-control-static" tabindex="-1" name="Profile" style="size: 20px">
+
+                                            <option></option>
+                                            {% for i in profile %}
+                                                <option value="{{ i.getIdprofile().getName() }}">{{ i.getIdprofile().getName() }}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                            </div></div></div></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <!-- form wizard -->
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/wizard/jquery.smartWizard.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jquery.dataTables.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.bootstrap.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.buttons.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.bootstrap.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/jszip.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/pdfmake.min.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.html5.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/vfs_fonts.js'   %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/buttons.print.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.fixedHeader.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.keyTable.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.responsive.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/responsive.bootstrap.min.js' %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+     {% javascripts '@AppBundle/Resources/public/gentelella/js/datatables/dataTables.scroller.min.js'  %}
+     <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+
+
+     <script type="text/javascript">
+         $(document).ready(function() {
+             $('#example').DataTable();
+         } );
+         TableManageButtons.init();
+     </script>
+
+ {% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,82 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiConsumables
+ *
+ * @ORM\Table(name="glpi_consumables", indexes={@ORM\Index(name="date_in", columns={"date_in"}), @ORM\Index(name="date_out", columns={"date_out"}), @ORM\Index(name="consumableitems_id", columns={"consumableitems_id"}), @ORM\Index(name="entities_id", columns={"entities_id"}), @ORM\Index(name="item", columns={"itemtype", "items_id"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiConsumables
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="consumableitems_id", type="integer", nullable=false)
+     */
+    private $consumableitemsId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_in", type="date", nullable=true)
+     */
+    private $dateIn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_out", type="date", nullable=true)
+     */
+    private $dateOut;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=true)
+     */
+    private $itemtype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

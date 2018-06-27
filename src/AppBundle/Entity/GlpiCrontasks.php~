@@ -1,0 +1,131 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiCrontasks
+ *
+ * @ORM\Table(name="glpi_crontasks", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"itemtype", "name"})}, indexes={@ORM\Index(name="mode", columns={"mode"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiCrontasks
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=150, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="frequency", type="integer", nullable=false)
+     */
+    private $frequency;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="param", type="integer", nullable=true)
+     */
+    private $param;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="state", type="integer", nullable=false)
+     */
+    private $state = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mode", type="integer", nullable=false)
+     */
+    private $mode = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="allowmode", type="integer", nullable=false)
+     */
+    private $allowmode = '3';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="hourmin", type="integer", nullable=false)
+     */
+    private $hourmin = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="hourmax", type="integer", nullable=false)
+     */
+    private $hourmax = '24';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="logs_lifetime", type="integer", nullable=false)
+     */
+    private $logsLifetime = '30';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="lastrun", type="datetime", nullable=true)
+     */
+    private $lastrun;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lastcode", type="integer", nullable=true)
+     */
+    private $lastcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

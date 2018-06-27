@@ -1,0 +1,138 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiLocations
+ *
+ * @ORM\Table(name="glpi_locations", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"entities_id", "locations_id", "name"})}, indexes={@ORM\Index(name="locations_id", columns={"locations_id"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="is_recursive", columns={"is_recursive"}), @ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="date_creation", columns={"date_creation"})})
+ * @ORM\Entity
+ */
+class GlpiLocations
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="entities_id", type="integer", nullable=false)
+     */
+    private $entitiesId = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_recursive", type="boolean", nullable=false)
+     */
+    private $isRecursive = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="locations_id", type="integer", nullable=false)
+     */
+    private $locationsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="completename", type="text", length=65535, nullable=true)
+     */
+    private $completename;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ancestors_cache", type="text", nullable=true)
+     */
+    private $ancestorsCache;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sons_cache", type="text", nullable=true)
+     */
+    private $sonsCache;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="building", type="string", length=255, nullable=true)
+     */
+    private $building;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="room", type="string", length=255, nullable=true)
+     */
+    private $room;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=255, nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=255, nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="altitude", type="string", length=255, nullable=true)
+     */
+    private $altitude;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

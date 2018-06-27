@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiAuthldapreplicates
+ *
+ * @ORM\Table(name="glpi_authldapreplicates", indexes={@ORM\Index(name="authldaps_id", columns={"authldaps_id"})})
+ * @ORM\Entity
+ */
+class GlpiAuthldapreplicates
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="authldaps_id", type="integer", nullable=false)
+     */
+    private $authldapsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="host", type="string", length=255, nullable=true)
+     */
+    private $host;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="port", type="integer", nullable=false)
+     */
+    private $port = '389';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -1,0 +1,40 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiProjecttasksTickets
+ *
+ * @ORM\Table(name="glpi_projecttasks_tickets", uniqueConstraints={@ORM\UniqueConstraint(name="unicity", columns={"tickets_id", "projecttasks_id"})}, indexes={@ORM\Index(name="projects_id", columns={"projecttasks_id"})})
+ * @ORM\Entity
+ */
+class GlpiProjecttasksTickets
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tickets_id", type="integer", nullable=false)
+     */
+    private $ticketsId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="projecttasks_id", type="integer", nullable=false)
+     */
+    private $projecttasksId = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

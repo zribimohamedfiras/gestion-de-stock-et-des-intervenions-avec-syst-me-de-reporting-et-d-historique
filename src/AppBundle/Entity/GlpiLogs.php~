@@ -1,0 +1,89 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GlpiLogs
+ *
+ * @ORM\Table(name="glpi_logs", indexes={@ORM\Index(name="date_mod", columns={"date_mod"}), @ORM\Index(name="itemtype_link", columns={"itemtype_link"}), @ORM\Index(name="item", columns={"itemtype", "items_id"})})
+ * @ORM\Entity
+ */
+class GlpiLogs
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype", type="string", length=100, nullable=false)
+     */
+    private $itemtype = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="items_id", type="integer", nullable=false)
+     */
+    private $itemsId = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="itemtype_link", type="string", length=100, nullable=false)
+     */
+    private $itemtypeLink = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="linked_action", type="integer", nullable=false)
+     */
+    private $linkedAction = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_name", type="string", length=255, nullable=true)
+     */
+    private $userName;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_mod", type="datetime", nullable=true)
+     */
+    private $dateMod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_search_option", type="integer", nullable=false)
+     */
+    private $idSearchOption = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="old_value", type="string", length=255, nullable=true)
+     */
+    private $oldValue;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="new_value", type="string", length=255, nullable=true)
+     */
+    private $newValue;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+
